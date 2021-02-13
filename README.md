@@ -12,4 +12,4 @@
 [team_contract]: /assets/contract.pdf
 [demo_page]: https://youtube.com/
 [wiki_page]: https://github.com/maxner1/framer/wiki
-[process_page]: https://trello.com/b/PrJjUyWp/eecs-441-error-404
+[process_page]: https://trello.com/framer11/
