@@ -13,6 +13,8 @@
 		1A3785F925EC61E4002AD1A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785F725EC61E4002AD1A0 /* Main.storyboard */; };
 		1A3785FB25EC61E9002AD1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */; };
 		1A3785FE25EC61E9002AD1A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */; };
+		B9505CBB25FAB5F9001DA34B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CBA25FAB5F9001DA34B /* HomeView.swift */; };
+		B9505CBE25FAB637001DA34B /* PhotoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CBD25FAB637001DA34B /* PhotoSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A3785FD25EC61E9002AD1A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A3785FF25EC61E9002AD1A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9505CBA25FAB5F9001DA34B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B9505CBD25FAB637001DA34B /* PhotoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,9 @@
 			children = (
 				1A3785F125EC61E4002AD1A0 /* AppDelegate.swift */,
 				1A3785F325EC61E4002AD1A0 /* ViewController.swift */,
+				B9505CBA25FAB5F9001DA34B /* HomeView.swift */,
 				1A3785F525EC61E4002AD1A0 /* Experience.rcproject */,
+				B9505CBD25FAB637001DA34B /* PhotoSelectionView.swift */,
 				1A3785F725EC61E4002AD1A0 /* Main.storyboard */,
 				1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */,
 				1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */,
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3785F425EC61E4002AD1A0 /* ViewController.swift in Sources */,
+				B9505CBB25FAB5F9001DA34B /* HomeView.swift in Sources */,
+				B9505CBE25FAB637001DA34B /* PhotoSelectionView.swift in Sources */,
 				1A3785F225EC61E4002AD1A0 /* AppDelegate.swift in Sources */,
 				1A3785F625EC61E4002AD1A0 /* Experience.rcproject in Sources */,
 			);
@@ -287,6 +295,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A2J6A9UPR2;
 				INFOPLIST_FILE = Framer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,6 +314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A2J6A9UPR2;
 				INFOPLIST_FILE = Framer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
