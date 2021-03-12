@@ -226,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukI-Xa-Tvq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-451" y="836"/>
+            <point key="canvasLocation" x="-452" y="836"/>
         </scene>
         <!--Cam RollVC-->
         <scene sceneID="sqD-3y-271">
