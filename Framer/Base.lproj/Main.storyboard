@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,7 +47,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.96088313959822214" blue="0.69420057943159419" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" name="InnerBackgroundYellow"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="7ao-Id-tVm" secondAttribute="bottom" constant="147" id="HfX-7X-lCV"/>
                                             <constraint firstItem="Vhq-BB-h1F" firstAttribute="centerX" secondItem="vqj-7U-YOL" secondAttribute="centerX" id="b86-mw-cam"/>
@@ -69,7 +70,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RMM-aN-HkS"/>
-                        <color key="backgroundColor" red="0.99676052419503491" green="1" blue="0.51434481236991858" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="BackgroundYellow"/>
                         <constraints>
                             <constraint firstItem="ymh-CF-AqG" firstAttribute="centerX" secondItem="W9a-Gd-xPY" secondAttribute="centerX" id="JhQ-mx-QNB"/>
                             <constraint firstItem="ymh-CF-AqG" firstAttribute="centerY" secondItem="W9a-Gd-xPY" secondAttribute="centerY" id="LhQ-im-RVR"/>
@@ -95,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="786" y="102"/>
+            <point key="canvasLocation" x="1506" y="102"/>
         </scene>
         <!--Photo Selection-->
         <scene sceneID="erQ-2s-jS8">
@@ -133,6 +134,9 @@
                                         <state key="normal" title="default library">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="5Ra-ph-gQx" kind="presentation" id="n1m-eS-PqV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvN-iX-5ja">
                                         <rect key="frame" x="63" y="298" width="288" height="77"/>
@@ -146,7 +150,7 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.96088313960000005" blue="0.69420057940000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="InnerBackgroundYellow"/>
                                 <constraints>
                                     <constraint firstItem="VvN-iX-5ja" firstAttribute="top" secondItem="RRu-0o-cPi" secondAttribute="bottom" constant="59" id="3Po-e8-2Hh"/>
                                     <constraint firstItem="RRu-0o-cPi" firstAttribute="trailing" secondItem="VvN-iX-5ja" secondAttribute="trailing" id="4Nq-HB-jl0"/>
@@ -166,7 +170,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rJQ-WE-zdZ"/>
-                        <color key="backgroundColor" red="0.99676052420000005" green="1" blue="0.51434481239999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="BackgroundYellow"/>
                         <constraints>
                             <constraint firstItem="Rwu-x8-bV8" firstAttribute="top" secondItem="rJQ-WE-zdZ" secondAttribute="top" constant="102" id="GXH-15-sOa"/>
                             <constraint firstItem="rJQ-WE-zdZ" firstAttribute="bottom" secondItem="Rwu-x8-bV8" secondAttribute="bottom" constant="13" id="djc-ry-8tQ"/>
@@ -179,5 +183,57 @@
             </objects>
             <point key="canvasLocation" x="-252" y="102"/>
         </scene>
+        <!--Default Library-->
+        <scene sceneID="5GQ-dQ-fRE">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ukI-Xa-Tvq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="5Ra-ph-gQx" customClass="DefaultLibrary" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zYl-2F-Tsi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdB-50-2BS">
+                                <rect key="frame" x="0.0" y="102" width="414" height="693"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iS4-uu-ppT">
+                                        <rect key="frame" x="8" y="8" width="398" height="677"/>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="Fyb-8F-POJ"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="DB4-jb-1pY"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" name="InnerBackgroundYellow"/>
+                                <constraints>
+                                    <constraint firstItem="iS4-uu-ppT" firstAttribute="bottom" secondItem="bdB-50-2BS" secondAttribute="bottomMargin" id="6hc-Zg-M2A"/>
+                                    <constraint firstItem="iS4-uu-ppT" firstAttribute="leading" secondItem="bdB-50-2BS" secondAttribute="leadingMargin" id="ETQ-iA-NNl"/>
+                                    <constraint firstItem="iS4-uu-ppT" firstAttribute="top" secondItem="bdB-50-2BS" secondAttribute="topMargin" id="Jja-tk-zBD"/>
+                                    <constraint firstItem="iS4-uu-ppT" firstAttribute="trailing" secondItem="bdB-50-2BS" secondAttribute="trailingMargin" id="gSN-hd-38K"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lnE-sk-Urs"/>
+                        <color key="backgroundColor" name="BackgroundYellow"/>
+                        <constraints>
+                            <constraint firstItem="bdB-50-2BS" firstAttribute="top" secondItem="lnE-sk-Urs" secondAttribute="top" constant="102" id="Jar-eV-rgr"/>
+                            <constraint firstItem="bdB-50-2BS" firstAttribute="leading" secondItem="zYl-2F-Tsi" secondAttribute="leading" id="Pg9-3Y-vGp"/>
+                            <constraint firstItem="lnE-sk-Urs" firstAttribute="bottom" secondItem="bdB-50-2BS" secondAttribute="bottom" constant="13" id="s25-8S-VIj"/>
+                            <constraint firstAttribute="trailing" secondItem="bdB-50-2BS" secondAttribute="trailing" id="t5c-KT-1nr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lGg-Ma-JhY"/>
+                    <connections>
+                        <outlet property="scrollView" destination="iS4-uu-ppT" id="hhD-0f-3bq"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="605.79710144927537" y="101.78571428571428"/>
+        </scene>
     </scenes>
+    <resources>
+        <namedColor name="BackgroundYellow">
+            <color red="1" green="0.98612410872010747" blue="0.5461651548854829" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="InnerBackgroundYellow">
+            <color red="1" green="0.93785140019295898" blue="0.76222696637874143" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

@@ -15,6 +15,7 @@
 		1A3785FE25EC61E9002AD1A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */; };
 		B9505CBB25FAB5F9001DA34B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CBA25FAB5F9001DA34B /* HomeView.swift */; };
 		B9505CBE25FAB637001DA34B /* PhotoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CBD25FAB637001DA34B /* PhotoSelectionView.swift */; };
+		B9505CC525FACE54001DA34B /* DefaultLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CC425FACE54001DA34B /* DefaultLibraryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1A3785FF25EC61E9002AD1A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9505CBA25FAB5F9001DA34B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B9505CBD25FAB637001DA34B /* PhotoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionView.swift; sourceTree = "<group>"; };
+		B9505CC425FACE54001DA34B /* DefaultLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLibraryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				1A3785F125EC61E4002AD1A0 /* AppDelegate.swift */,
 				1A3785F325EC61E4002AD1A0 /* ViewController.swift */,
+				B9505CC425FACE54001DA34B /* DefaultLibraryView.swift */,
 				B9505CBA25FAB5F9001DA34B /* HomeView.swift */,
 				1A3785F525EC61E4002AD1A0 /* Experience.rcproject */,
 				B9505CBD25FAB637001DA34B /* PhotoSelectionView.swift */,
@@ -147,6 +150,7 @@
 				B9505CBB25FAB5F9001DA34B /* HomeView.swift in Sources */,
 				B9505CBE25FAB637001DA34B /* PhotoSelectionView.swift in Sources */,
 				1A3785F225EC61E4002AD1A0 /* AppDelegate.swift in Sources */,
+				B9505CC525FACE54001DA34B /* DefaultLibraryView.swift in Sources */,
 				1A3785F625EC61E4002AD1A0 /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
