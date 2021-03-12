@@ -13,6 +13,7 @@
 		1A3785F925EC61E4002AD1A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785F725EC61E4002AD1A0 /* Main.storyboard */; };
 		1A3785FB25EC61E9002AD1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */; };
 		1A3785FE25EC61E9002AD1A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */; };
+		2583661B25FB6E91001B0A11 /* CamRollVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2583661A25FB6E91001B0A11 /* CamRollVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A3785FD25EC61E9002AD1A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A3785FF25EC61E9002AD1A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2583661A25FB6E91001B0A11 /* CamRollVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamRollVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				1A3785F325EC61E4002AD1A0 /* ViewController.swift */,
 				1A3785F525EC61E4002AD1A0 /* Experience.rcproject */,
 				1A3785F725EC61E4002AD1A0 /* Main.storyboard */,
+				2583661A25FB6E91001B0A11 /* CamRollVC.swift */,
 				1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */,
 				1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */,
 				1A3785FF25EC61E9002AD1A0 /* Info.plist */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3785F425EC61E4002AD1A0 /* ViewController.swift in Sources */,
+				2583661B25FB6E91001B0A11 /* CamRollVC.swift in Sources */,
 				1A3785F225EC61E4002AD1A0 /* AppDelegate.swift in Sources */,
 				1A3785F625EC61E4002AD1A0 /* Experience.rcproject in Sources */,
 			);
