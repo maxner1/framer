@@ -5,13 +5,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Home View-->
         <scene sceneID="k5Y-VL-9Ao">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v0n-SY-oUn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="cV8-js-hbO" customClass="HomeView" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W9a-Gd-xPY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -79,15 +79,16 @@
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v0n-SY-oUn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1133" y="102"/>
+            <point key="canvasLocation" x="-2357" y="102"/>
         </scene>
         <!--ARView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <arView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </arView>
                     <connections>
@@ -96,12 +97,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="102"/>
+            <point key="canvasLocation" x="-2458" y="836"/>
         </scene>
         <!--Photo Selection-->
         <scene sceneID="erQ-2s-jS8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rMf-RF-yjr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="doA-SS-Bpn" customClass="PhotoSelection" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LcH-p4-SU7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -148,6 +148,9 @@
                                         <state key="normal" title="select a photo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="dX7-c0-2LE" kind="presentation" id="P39-XL-6pb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" name="InnerBackgroundYellow"/>
@@ -180,13 +183,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="iKq-Bt-fMP"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rMf-RF-yjr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-252" y="102"/>
+            <point key="canvasLocation" x="-1474" y="102"/>
         </scene>
         <!--Default Library-->
         <scene sceneID="5GQ-dQ-fRE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ukI-Xa-Tvq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="5Ra-ph-gQx" customClass="DefaultLibrary" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zYl-2F-Tsi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -220,12 +223,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lGg-Ma-JhY"/>
-                    <connections>
-                        <outlet property="scrollView" destination="iS4-uu-ppT" id="hhD-0f-3bq"/>
-                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ukI-Xa-Tvq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="605.79710144927537" y="101.78571428571428"/>
+            <point key="canvasLocation" x="-451" y="836"/>
         </scene>
         <!--Cam RollVC-->
         <scene sceneID="sqD-3y-271">
@@ -270,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sB-lY-arq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1181" y="134"/>
+            <point key="canvasLocation" x="-451" y="102"/>
         </scene>
         <!--Home-->
         <scene sceneID="S7Z-Nr-zUU">
@@ -289,16 +290,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpf-VD-HJP">
                                 <rect key="frame" x="78" y="321" width="259" height="30"/>
                                 <state key="normal" title="Choose a photo from your camera roll"/>
-                                <connections>
-                                    <segue destination="dX7-c0-2LE" kind="presentation" id="VQD-5n-we1"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzf-dO-Wj4">
                                 <rect key="frame" x="161" y="433" width="92" height="30"/>
                                 <state key="normal" title="Open camera"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="VVk-K5-zZu"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you like to do?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iH-uh-s2k">
                                 <rect key="frame" x="75" y="223" width="265" height="28"/>
@@ -329,10 +324,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXn-gS-rRy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1290" y="134"/>
+            <point key="canvasLocation" x="-1701" y="836"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="BackgroundYellow">
+            <color red="1" green="0.98600000143051147" blue="0.54600000381469727" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="InnerBackgroundYellow">
+            <color red="1" green="0.93800002336502075" blue="0.76200002431869507" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -342,11 +343,5 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <namedColor name="BackgroundYellow">
-            <color red="1" green="0.98612410872010747" blue="0.5461651548854829" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="InnerBackgroundYellow">
-            <color red="1" green="0.93785140019295898" blue="0.76222696637874143" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
     </resources>
 </document>
