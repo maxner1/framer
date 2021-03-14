@@ -74,18 +74,14 @@
 			children = (
 				360BC46B25FDCAB800594DAD /* FrameView */,
 				1A3785F125EC61E4002AD1A0 /* AppDelegate.swift */,
-				B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */,
+				B932551025FE2E08004553B1 /* PhotoSelection */,
 				1A3785F325EC61E4002AD1A0 /* ViewController.swift */,
 				B9505CBA25FAB5F9001DA34B /* HomeView.swift */,
-				B9505CE025FDDEDB001DA34B /* DefaultPhoto.swift */,
 				1A3785F525EC61E4002AD1A0 /* Experience.rcproject */,
-				B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */,
 				1A3785F725EC61E4002AD1A0 /* Main.storyboard */,
-				2583661A25FB6E91001B0A11 /* CamRollVC.swift */,
 				1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */,
 				1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */,
 				1A3785FF25EC61E9002AD1A0 /* Info.plist */,
-				B9505CDB25FDC31D001DA34B /* DefaultLibraryVC.swift */,
 			);
 			path = Framer;
 			sourceTree = "<group>";
@@ -97,6 +93,18 @@
 				360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */,
 			);
 			path = FrameView;
+			sourceTree = "<group>";
+		};
+		B932551025FE2E08004553B1 /* PhotoSelection */ = {
+			isa = PBXGroup;
+			children = (
+				B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */,
+				B9505CE025FDDEDB001DA34B /* DefaultPhoto.swift */,
+				B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */,
+				2583661A25FB6E91001B0A11 /* CamRollVC.swift */,
+				B9505CDB25FDC31D001DA34B /* DefaultLibraryVC.swift */,
+			);
+			path = PhotoSelection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +185,7 @@
 				B9505CBB25FAB5F9001DA34B /* HomeView.swift in Sources */,
 				B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */,
 				360BC47F25FDDA6500594DAD /* FrameViewController.swift in Sources */,
-				B9505CBE25FAB637001DA34B /* PhotoSelectionView.swift in Sources */,
+				B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */,
 				360BC47525FDCB5600594DAD /* FrameCollectionViewCell.swift in Sources */,
 				1A3785F225EC61E4002AD1A0 /* AppDelegate.swift in Sources */,
 				1A3785F625EC61E4002AD1A0 /* Experience.rcproject in Sources */,
