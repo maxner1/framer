@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -115,11 +114,11 @@
         <scene sceneID="7tq-ga-sHo">
             <objects>
                 <viewController id="E6y-Hq-sA6" customClass="PhotoSelectionVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UKw-Hi-Fy6">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="UKw-Hi-Fy6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxi-hV-RGb">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vxi-hV-RGb">
                                 <rect key="frame" x="0.0" y="174" width="414" height="656"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FL0-oP-7XW">
@@ -153,7 +152,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="o8J-kU-54f" kind="show" id="dPR-hH-CkD"/>
+                                            <segue destination="o8J-kU-54f" kind="show" id="e6c-ig-Ndf"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-kK-lms">
@@ -371,7 +370,6 @@
                                                 <constraint firstItem="epz-c8-k5W" firstAttribute="top" secondItem="wS4-Xb-pOf" secondAttribute="top" id="xmx-wL-H6z"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.01606218517" green="0.42330402140000001" blue="0.9476940036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="150" height="200"/>
                                         <connections>
                                             <outlet property="ImageView" destination="epz-c8-k5W" id="QtV-HA-9Fv"/>
@@ -402,13 +400,14 @@
                             <constraint firstItem="ldY-2t-8RM" firstAttribute="top" secondItem="Os8-tc-0Gr" secondAttribute="top" constant="48" id="wbI-w0-8KK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="OHO-xy-TcH"/>
                     <connections>
                         <outlet property="collection" destination="kWT-1D-L6F" id="PWq-ih-Nmr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qom-Y3-brL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="589.85507246376812" y="-100.44642857142857"/>
+            <point key="canvasLocation" x="1223" y="230"/>
         </scene>
     </scenes>
     <resources>

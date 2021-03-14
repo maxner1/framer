@@ -23,7 +23,9 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         if let framecell = collectionView.dequeueReusableCell(withReuseIdentifier: "frame", for: indexPath) as? FrameCollectionViewCell {
             
-            framecell.insertImage(with: #imageLiteral(resourceName: "Frame1"))
+            let frameName = "Frame" + String(indexPath.row)
+            let temp = UIImage(named: frameName)
+            framecell.insertImage(with: temp!)
             
             cell = framecell
         }
