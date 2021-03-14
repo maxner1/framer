@@ -9,7 +9,9 @@ import UIKit
 
 class FrameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let frames : [String] = ["Charles", "Alex", "Matt", "Blake", "Elise", "Anthony"]
+    let frames : [UIImage] = [#imageLiteral(resourceName: "Frame0"), #imageLiteral(resourceName: "Frame1"), #imageLiteral(resourceName: "Frame2"), #imageLiteral(resourceName: "Frame3"), #imageLiteral(resourceName: "Frame4"), #imageLiteral(resourceName: "Frame5")]
+    private var chosenFrameIndex = 0
+    public var selectedPhoto : UIImage?
 
     @IBOutlet weak var collection: UICollectionView!
     
@@ -35,6 +37,16 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(frames[indexPath.row])
+        chosenFrameIndex = indexPath.row
+        performSegue(withIdentifier: "finalConfirmationSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if var dest = segue.destination as? FinalConfirmationViewController {
+            let chosenFrame = frames[chosenFrameIndex]
+            dest.tempFrameImage = chosenFrame
+            dest.tempPhotoImage = selectedPhoto
+        }
     }
     
 
