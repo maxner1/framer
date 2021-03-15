@@ -219,6 +219,14 @@
                                     <constraint firstAttribute="height" constant="684" id="ZHP-Ra-Zot"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrb-HW-pnX">
+                                <rect key="frame" x="159" y="800" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Choose frame"/>
+                                <connections>
+                                    <segue destination="l1g-da-2Kc" kind="show" id="dvY-eU-h46"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDe-YO-Mvp"/>
                         <color key="backgroundColor" name="InnerBackgroundYellow"/>
@@ -335,13 +343,13 @@
         <!--Frame View Controller-->
         <scene sceneID="a75-j5-cWl">
             <objects>
-                <viewController id="l1g-da-2Kc" customClass="FrameViewController" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="frameViewController" id="l1g-da-2Kc" customClass="FrameViewController" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o6k-XE-atL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kWT-1D-L6F">
-                                <rect key="frame" x="0.0" y="204" width="414" height="692"/>
+                                <rect key="frame" x="0.0" y="248" width="414" height="648"/>
                                 <color key="backgroundColor" name="BackgroundYellow"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ShE-u3-Zea">
                                     <size key="itemSize" width="150" height="200"/>
@@ -382,7 +390,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frames" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldY-2t-8RM">
-                                <rect key="frame" x="143.5" y="92" width="127" height="48"/>
+                                <rect key="frame" x="143.5" y="136" width="127" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -403,11 +411,61 @@
                     <navigationItem key="navigationItem" id="OHO-xy-TcH"/>
                     <connections>
                         <outlet property="collection" destination="kWT-1D-L6F" id="PWq-ih-Nmr"/>
+                        <segue destination="4GQ-Hq-pK4" kind="show" identifier="finalConfirmationSegue" id="llr-3H-yQ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qom-Y3-brL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1223" y="230"/>
+            <point key="canvasLocation" x="1238" y="102"/>
+        </scene>
+        <!--Final Confimation Controller-->
+        <scene sceneID="aEl-Zd-hY2">
+            <objects>
+                <viewController storyboardIdentifier="finalConfirmationVC" title="Final Confimation Controller" id="4GQ-Hq-pK4" customClass="FinalConfirmationViewController" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Diq-Bz-cma">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd0-SP-nTj">
+                                <rect key="frame" x="57" y="129" width="300" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ETa-Ki-8lv" userLabel="Photo Image">
+                                <rect key="frame" x="57" y="325" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Qud-zL-Hos"/>
+                                    <constraint firstAttribute="height" constant="300" id="YOY-Nm-S48"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="esI-Fn-OKK" userLabel="Frame Image">
+                                <rect key="frame" x="-43" y="225" width="500" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="NnV-1V-buq"/>
+                                    <constraint firstAttribute="width" constant="500" id="y9j-D9-3Gz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YTF-CE-zqG"/>
+                        <color key="backgroundColor" name="BackgroundYellow"/>
+                        <constraints>
+                            <constraint firstItem="ETa-Ki-8lv" firstAttribute="centerY" secondItem="YTF-CE-zqG" secondAttribute="centerY" id="9zd-HZ-9Af"/>
+                            <constraint firstItem="esI-Fn-OKK" firstAttribute="centerY" secondItem="YTF-CE-zqG" secondAttribute="centerY" id="OaR-o4-ePl"/>
+                            <constraint firstItem="esI-Fn-OKK" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="jv0-Ka-qCF"/>
+                            <constraint firstItem="ETa-Ki-8lv" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="r8x-n6-8kg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rsq-yv-vOf"/>
+                    <connections>
+                        <outlet property="frameImage" destination="esI-Fn-OKK" id="NqF-Rv-F0O"/>
+                        <outlet property="photoImage" destination="ETa-Ki-8lv" id="9w4-hC-aZc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6zv-VN-L9z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2044.9275362318842" y="101.78571428571428"/>
         </scene>
     </scenes>
     <resources>
