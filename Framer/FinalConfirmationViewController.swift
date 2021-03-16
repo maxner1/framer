@@ -17,12 +17,27 @@ class FinalConfirmationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(tempFrameImage)
-        print(tempPhotoImage)
+        // print(tempFrameImage)
+        // print(tempPhotoImage)
+        
+        let H = (tempPhotoImage?.size.height)! + (2*((tempFrameImage?.capInsets.top)!))
+        let W = (tempPhotoImage?.size.width)! + (2*((tempFrameImage?.capInsets.left)!))
+        
+        frameImage.heightAnchor.constraint(equalToConstant: H).isActive = true
+        frameImage.widthAnchor.constraint(equalToConstant: W).isActive = true
+        
         frameImage.image = tempFrameImage
         photoImage.image = tempPhotoImage
         frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
+        
+        
+        
+        //let heightConstraint = NSLayoutConstraint(item: frameImage as Any, attribute: .height, relatedBy: .equal, toItem: photoImage, attribute: .height, multiplier: 1.0, constant: -(2*(frameImage.image?.capInsets.top)!))
+        //let widthConstraint = NSLayoutConstraint(item: frameImage as Any, attribute: .width, relatedBy: .equal, toItem: photoImage, attribute: .width, multiplier: 1.0, constant: -(2*(frameImage.image?.capInsets.left)!))
+        //frameImage.addConstraints([heightConstraint, widthConstraint])
+        
+
         // Do any additional setup after loading the view.
     }
     

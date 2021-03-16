@@ -433,18 +433,18 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ETa-Ki-8lv" userLabel="Photo Image">
-                                <rect key="frame" x="57" y="325" width="300" height="300"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esI-Fn-OKK" userLabel="Frame Image">
+                                <rect key="frame" x="20" y="225" width="374" height="500"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Qud-zL-Hos"/>
-                                    <constraint firstAttribute="height" constant="300" id="YOY-Nm-S48"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="NBz-sT-msk"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="NnV-1V-buq"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="esI-Fn-OKK" userLabel="Frame Image">
-                                <rect key="frame" x="-43" y="225" width="500" height="500"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ETa-Ki-8lv" userLabel="Photo Image">
+                                <rect key="frame" x="20" y="225" width="374" height="500"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="NnV-1V-buq"/>
-                                    <constraint firstAttribute="width" constant="500" id="y9j-D9-3Gz"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="1yY-Bw-5zu"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="fPS-PN-ViO"/>
                                 </constraints>
                             </imageView>
                         </subviews>
