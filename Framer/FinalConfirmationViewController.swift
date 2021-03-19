@@ -14,6 +14,14 @@ class FinalConfirmationViewController: UIViewController {
 
     @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
+    @IBOutlet weak var doneButton: UIButton!
+    
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+        let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
+        self.show(arViewController, sender: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +49,10 @@ class FinalConfirmationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if var dest = segue.destination as? ARViewController {
+//            print("Within prepare for Final")
+//        }
+//    }
 
 }

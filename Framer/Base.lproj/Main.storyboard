@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,31 +95,15 @@
             </objects>
             <point key="canvasLocation" x="-1447.8260869565217" y="101.78571428571428"/>
         </scene>
-        <!--ARView-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
-                    <arView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </arView>
-                    <connections>
-                        <outlet property="arView" destination="8bC-Xf-vdC" id="TPV-4x-avp"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2458" y="836"/>
-        </scene>
         <!--Photo SelectionVC-->
         <scene sceneID="7tq-ga-sHo">
             <objects>
                 <viewController id="E6y-Hq-sA6" customClass="PhotoSelectionVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="UKw-Hi-Fy6">
+                    <view key="view" contentMode="scaleToFill" id="UKw-Hi-Fy6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vxi-hV-RGb">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxi-hV-RGb">
                                 <rect key="frame" x="0.0" y="174" width="414" height="656"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FL0-oP-7XW">
@@ -219,10 +204,11 @@
                                     <constraint firstAttribute="height" constant="684" id="ZHP-Ra-Zot"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrb-HW-pnX">
-                                <rect key="frame" x="159" y="800" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Choose frame"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrb-HW-pnX">
+                                <rect key="frame" x="177.5" y="800" width="59" height="57"/>
+                                <state key="normal" image="checkmark.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50"/>
+                                </state>
                                 <connections>
                                     <segue destination="l1g-da-2Kc" kind="show" id="dvY-eU-h46"/>
                                 </connections>
@@ -231,6 +217,9 @@
                         <viewLayoutGuide key="safeArea" id="vDe-YO-Mvp"/>
                         <color key="backgroundColor" name="InnerBackgroundYellow"/>
                         <constraints>
+                            <constraint firstItem="vDe-YO-Mvp" firstAttribute="bottom" secondItem="nrb-HW-pnX" secondAttribute="bottom" constant="5" id="Dw8-SI-J5q"/>
+                            <constraint firstItem="nrb-HW-pnX" firstAttribute="centerX" secondItem="vDe-YO-Mvp" secondAttribute="centerX" id="Ztk-zd-Rcu"/>
+                            <constraint firstItem="nrb-HW-pnX" firstAttribute="top" secondItem="BzX-VV-noE" secondAttribute="bottom" constant="8" symbolic="YES" id="bPy-Iz-iEH"/>
                             <constraint firstItem="vDe-YO-Mvp" firstAttribute="trailing" secondItem="BzX-VV-noE" secondAttribute="trailing" constant="20" id="lvb-3b-Q6h"/>
                             <constraint firstItem="BzX-VV-noE" firstAttribute="leading" secondItem="vDe-YO-Mvp" secondAttribute="leading" constant="20" id="wNM-gG-Qxq"/>
                             <constraint firstItem="vDe-YO-Mvp" firstAttribute="bottom" secondItem="BzX-VV-noE" secondAttribute="bottom" constant="70" id="xJC-jo-2zO"/>
@@ -340,6 +329,31 @@
             </objects>
             <point key="canvasLocation" x="-2357.971014492754" y="101.78571428571428"/>
         </scene>
+        <!--AR VC-->
+        <scene sceneID="tlx-Z0-wnz">
+            <objects>
+                <viewController storyboardIdentifier="ARViewController" id="Rf9-gw-8JE" userLabel="AR VC" customClass="ARViewController" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g7H-QE-RqZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gzf-W0-86J">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arscnView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kEq-s5-tKz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="O6K-jI-17D"/>
+                    <connections>
+                        <outlet property="sceneView" destination="Gzf-W0-86J" id="AmT-xs-QQd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IW7-Xc-3OP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045" y="796"/>
+        </scene>
         <!--Frame View Controller-->
         <scene sceneID="a75-j5-cWl">
             <objects>
@@ -447,18 +461,31 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="fPS-PN-ViO"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVH-SC-vug">
+                                <rect key="frame" x="177.5" y="805" width="59" height="57"/>
+                                <state key="normal" image="checkmark.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="4GQ-Hq-pK4" eventType="touchUpInside" id="gcV-KF-GmM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YTF-CE-zqG"/>
                         <color key="backgroundColor" name="BackgroundYellow"/>
                         <constraints>
+                            <constraint firstItem="oVH-SC-vug" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="9fu-Pg-XME"/>
                             <constraint firstItem="ETa-Ki-8lv" firstAttribute="centerY" secondItem="YTF-CE-zqG" secondAttribute="centerY" id="9zd-HZ-9Af"/>
                             <constraint firstItem="esI-Fn-OKK" firstAttribute="centerY" secondItem="YTF-CE-zqG" secondAttribute="centerY" id="OaR-o4-ePl"/>
+                            <constraint firstItem="YTF-CE-zqG" firstAttribute="bottom" secondItem="oVH-SC-vug" secondAttribute="bottom" id="aP4-pn-5yK"/>
                             <constraint firstItem="esI-Fn-OKK" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="jv0-Ka-qCF"/>
+                            <constraint firstItem="oVH-SC-vug" firstAttribute="top" secondItem="ETa-Ki-8lv" secondAttribute="bottom" constant="80" id="m9d-Hy-Enp"/>
                             <constraint firstItem="ETa-Ki-8lv" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="r8x-n6-8kg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rsq-yv-vOf"/>
                     <connections>
+                        <outlet property="doneButton" destination="oVH-SC-vug" id="yws-59-mUU"/>
                         <outlet property="frameImage" destination="esI-Fn-OKK" id="NqF-Rv-F0O"/>
                         <outlet property="photoImage" destination="ETa-Ki-8lv" id="9w4-hC-aZc"/>
                     </connections>
@@ -469,11 +496,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="BackgroundYellow">
             <color red="1" green="0.98600000143051147" blue="0.54600000381469727" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="InnerBackgroundYellow">
             <color red="1" green="0.93800002336502075" blue="0.76200002431869507" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
