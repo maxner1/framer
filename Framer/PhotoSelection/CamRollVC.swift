@@ -5,6 +5,7 @@ import UIKit
 class CamRollVC: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
+    
     public var defaultPhoto : DefaultPhoto? = nil
     public var cameraRollPhoto : UIImage?
     private var finalPhoto : UIImage?

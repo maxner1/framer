@@ -10,6 +10,8 @@ import UIKit
 
 class PhotoSelectionVC: UIViewController {
     
+    public var finalImage: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,18 +38,27 @@ extension PhotoSelectionVC: UIImagePickerControllerDelegate, UINavigationControl
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        print("here")
+        
         if let img = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
             picker.dismiss(animated: false, completion: nil)
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "CamRollVC") as! CamRollVC
-            newViewController.cameraRollPhoto = img;
-            navigationController?.pushViewController(newViewController, animated: true)
+            let camRollVC = storyBoard.instantiateViewController(withIdentifier: "CamRollVC") as! CamRollVC
+            camRollVC.cameraRollPhoto = img;
+//            navigationController?.pushViewController(newViewController, animated: true)
+            self.finalImage = img
+            self.present(camRollVC, animated: true, completion: nil)
+//            self.performSegue(withIdentifier: "enlargeImageDefault", sender: self)
+            picker.dismiss(animated: true, completion: nil)
         }
+        print("here 2")
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: false, completion: nil)
     }
+    
+
 }
 
 
