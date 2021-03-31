@@ -11,6 +11,7 @@ class FinalConfirmationViewController: UIViewController {
     
     public var tempFrameImage: UIImage?
     public var tempPhotoImage: UIImage?
+    public var inset: CGFloat?
 
     @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
@@ -20,6 +21,7 @@ class FinalConfirmationViewController: UIViewController {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
         let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
+        arViewController.image = combineImages()
         self.show(arViewController, sender: nil)
     }
     
@@ -39,20 +41,31 @@ class FinalConfirmationViewController: UIViewController {
         frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
         
-        
-        
-        //let heightConstraint = NSLayoutConstraint(item: frameImage as Any, attribute: .height, relatedBy: .equal, toItem: photoImage, attribute: .height, multiplier: 1.0, constant: -(2*(frameImage.image?.capInsets.top)!))
-        //let widthConstraint = NSLayoutConstraint(item: frameImage as Any, attribute: .width, relatedBy: .equal, toItem: photoImage, attribute: .width, multiplier: 1.0, constant: -(2*(frameImage.image?.capInsets.left)!))
-        //frameImage.addConstraints([heightConstraint, widthConstraint])
-        
 
         // Do any additional setup after loading the view.
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if var dest = segue.destination as? ARViewController {
-//            print("Within prepare for Final")
-//        }
-//    }
+    func combineImages()-> UIImage {
+            let bottomImage = frameImage.image
+            var topImage = photoImage.image
+            var size = CGSize(width: topImage!.size.width + inset! * 2,
+                              height: topImage!.size.height + inset! * 2)
+            UIGraphicsBeginImageContext(size)
+            let areaSizeFrame = CGRect(x: 0, y: 0, width: size.width,
+                                       height: size.height)
+            bottomImage!.draw(in: areaSizeFrame)
+            let areaSizePhoto = CGRect(x: inset!, y: inset!,
+                                       width: size.width - inset! * 2,
+                                       height: size.height - inset! * 2)
+            topImage!.draw(in: areaSizePhoto, blendMode: .normal, alpha: 1.0)
+            var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            //frameImage.image = nil
+            //photoImage.image = newImage
+            //UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
+            return newImage
+        }
+    
+
 
 }

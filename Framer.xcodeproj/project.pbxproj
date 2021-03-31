@@ -25,6 +25,7 @@
 		25836649260B23CF001B0A11 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25836642260B23CF001B0A11 /* Lato-ThinItalic.ttf */; };
 		360BC47525FDCB5600594DAD /* FrameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */; };
 		360BC47F25FDDA6500594DAD /* FrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC47E25FDDA6500594DAD /* FrameViewController.swift */; };
+		81D9417B26151DD4004F3041 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D9417A26151DD4004F3041 /* Grid.swift */; };
 		B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */; };
 		B9505CD925FDC13B001DA34B /* DefaultPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */; };
 		B9505CDC25FDC31D001DA34B /* DefaultLibraryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CDB25FDC31D001DA34B /* DefaultLibraryVC.swift */; };
@@ -52,6 +53,7 @@
 		25836642260B23CF001B0A11 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCollectionViewCell.swift; sourceTree = "<group>"; };
 		360BC47E25FDDA6500594DAD /* FrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameViewController.swift; sourceTree = "<group>"; };
+		81D9417A26151DD4004F3041 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionVC.swift; sourceTree = "<group>"; };
 		B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPhotoCell.swift; sourceTree = "<group>"; };
 		B9505CDB25FDC31D001DA34B /* DefaultLibraryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLibraryVC.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */,
 				1A3785FF25EC61E9002AD1A0 /* Info.plist */,
 				1A6E816D26050497002B5945 /* ARViewController.swift */,
+				81D9417A26151DD4004F3041 /* Grid.swift */,
 				2583663B260B23CF001B0A11 /* Font Family */,
 			);
 			path = Framer;
@@ -221,6 +224,7 @@
 				1A3785F425EC61E4002AD1A0 /* ViewController.swift in Sources */,
 				B9505CE125FDDEDB001DA34B /* DefaultPhoto.swift in Sources */,
 				2583661B25FB6E91001B0A11 /* CamRollVC.swift in Sources */,
+				81D9417B26151DD4004F3041 /* Grid.swift in Sources */,
 				B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */,
 				1A6E816E26050497002B5945 /* ARViewController.swift in Sources */,
 				360BC47F25FDDA6500594DAD /* FrameViewController.swift in Sources */,
@@ -376,13 +380,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3W5SRLWU74;
+				DEVELOPMENT_TEAM = 869UD2RP58;
 				INFOPLIST_FILE = Framer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = umich.edu.maxner.framerios;
+				PRODUCT_BUNDLE_IDENTIFIER = umich.edu.milelise.framerios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -395,13 +399,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3W5SRLWU74;
+				DEVELOPMENT_TEAM = 869UD2RP58;
 				INFOPLIST_FILE = Framer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = umich.edu.maxner.framerios;
+				PRODUCT_BUNDLE_IDENTIFIER = umich.edu.milelise.framerios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

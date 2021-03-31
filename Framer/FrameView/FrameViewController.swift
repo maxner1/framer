@@ -234,6 +234,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
             //let finalFrame = finalF.scaleFrame(img: selectedPhoto!)
             dest.tempFrameImage = finalF
             dest.tempPhotoImage = finalImg
+            dest.inset = insets[chosenFrameIndex]
         }
     }
     
