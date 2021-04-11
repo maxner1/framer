@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FinalConfirmationViewController: UIViewController {
+class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     
     public var tempFrameImage: UIImage?
     public var tempPhotoImage: UIImage?
@@ -16,13 +16,24 @@ class FinalConfirmationViewController: UIViewController {
     @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var widthField: UITextField!
+    @IBOutlet weak var heightField: UITextField!
+    var saved_height: String!
+    var saved_width: String!
     
+
     @IBAction func doneButtonTapped(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
         let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
         arViewController.image = combineImages()
         self.show(arViewController, sender: nil)
+    }
+    
+    func text_ht_return(textField: UITextField) -> Bool {
+        saved_height = textField.text
+        textField.resignFirstResponder()
+        return false
     }
     
     override func viewDidLoad() {
@@ -43,7 +54,9 @@ class FinalConfirmationViewController: UIViewController {
         
 
         // Do any additional setup after loading the view.
+        
     }
+    
     
     func combineImages()-> UIImage {
             let bottomImage = frameImage.image
