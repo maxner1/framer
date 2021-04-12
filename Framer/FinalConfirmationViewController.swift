@@ -12,6 +12,7 @@ class FinalConfirmationViewController: UIViewController {
     public var tempFrameImage: UIImage?
     public var tempPhotoImage: UIImage?
     public var inset: CGFloat?
+    
 
     @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
@@ -41,7 +42,7 @@ class FinalConfirmationViewController: UIViewController {
         frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
         
-
+        
         // Do any additional setup after loading the view.
     }
     
