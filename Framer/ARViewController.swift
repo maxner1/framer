@@ -13,7 +13,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
     var grids = [Grid]()
-    var image: UIImage!
+    // var image: UIImage!
     public var masterList = [Selection]()
     public var currentIndex: Int?
     
@@ -110,7 +110,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let touchPosition = gesture.location(in: sceneView)
         
         // Translate those 2D points to 3D points using hitTest (existing plane)
-        let hitTestResults = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
+        //let hitTestResults = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
+        let hitTestResults = sceneView.raycastQuery(from: touchPosition, allowing: <#T##ARRaycastQuery.Target#>, alignment: <#T##ARRaycastQuery.TargetAlignment#>)
         
         let hitTest = hitTestResults.first
         let anchor = hitTest?.anchor as? ARPlaneAnchor
@@ -140,8 +141,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     func addPainting(_ hitResult: ARHitTestResult, _ grid: Grid) {
         // 1.
         let planeGeometry = SCNPlane(width: 0.2, height: 0.35)
+        let masterList[currentIndex!].anchor = hitResult.anchor
         let material = SCNMaterial()
-        material.diffuse.contents = image
+        material.diffuse.contents = masterList[currentIndex!].fullImg
         planeGeometry.materials = [material]
         
         // 2.

@@ -96,10 +96,11 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
             dest.tempFrameImage = finalF
             dest.tempPhotoImage = finalImg
             dest.inset = insets[chosenFrameIndex]
-            //dest.frameIndex = chosenFrameIndex
             masterList[currentIndex!].frameIndex = chosenFrameIndex
             dest.masterList = masterList
             dest.currentIndex = currentIndex
+            
+            // pass in frame w/h somewhere in here
         }
     }
     

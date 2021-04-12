@@ -28,6 +28,7 @@ class CamRollVC: UIViewController {
         } else {
             let newSelection = Selection(img: finalPhoto!)
             masterList.append(newSelection)
+            currentIndex = masterList.endIndex - 1
         }
     }
     

@@ -13,7 +13,7 @@ class FinalConfirmationViewController: UIViewController {
     public var tempPhotoImage: UIImage?
     public var inset: CGFloat?
     public var masterList = [Selection]()
-    public var frameIndex: Int?
+    //public var frameIndex: Int?
     public var currentIndex: Int?
     
 
@@ -25,7 +25,8 @@ class FinalConfirmationViewController: UIViewController {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
         let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
-        arViewController.image = combineImages()
+        //arViewController.image = combineImages()
+        arViewController.currentIndex = currentIndex
         arViewController.masterList = masterList
         self.show(arViewController, sender: nil)
         
@@ -48,17 +49,16 @@ class FinalConfirmationViewController: UIViewController {
         frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
         
-        
-
+        masterList[currentIndex!].fullImg = combineImages()
         
         
         // Do any additional setup after loading the view.
     }
     
-    func combineImages()-> UIImage {
+    func combineImages()-> UIImage {  // could be rewritten to add dims directly to fullImg in Selection
             let bottomImage = frameImage.image
-            var topImage = photoImage.image
-            var size = CGSize(width: topImage!.size.width + inset! * 2,
+            let topImage = photoImage.image
+            let size = CGSize(width: topImage!.size.width + inset! * 2,
                               height: topImage!.size.height + inset! * 2)
             UIGraphicsBeginImageContext(size)
             let areaSizeFrame = CGRect(x: 0, y: 0, width: size.width,
@@ -68,7 +68,7 @@ class FinalConfirmationViewController: UIViewController {
                                        width: size.width - inset! * 2,
                                        height: size.height - inset! * 2)
             topImage!.draw(in: areaSizePhoto, blendMode: .normal, alpha: 1.0)
-            var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             //frameImage.image = nil
             //photoImage.image = newImage
