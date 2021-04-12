@@ -17,8 +17,31 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var widthField: UITextField!
-    @IBOutlet weak var heightField: UITextField!
+    
+    @IBOutlet weak var widthField: UITextField! {
+        didSet {
+            widthField?.addDoneCancelToolbar(onDone: (target: self, action: #selector(doneButtonTappedForWidthField)))
+        }
+    }
+
+    @objc func doneButtonTappedForWidthField() {
+        print("Done");
+        let result = widthField.resignFirstResponder()
+        print("Result: ", result)
+    }
+    
+    @IBOutlet weak var heightField: UITextField! {
+        didSet {
+            heightField?.addDoneCancelToolbar(onDone: (target: self, action: #selector(doneButtonTappedForHeightField)))
+        }
+    }
+
+    @objc func doneButtonTappedForHeightField() {
+        print("Done");
+        let result = heightField.resignFirstResponder()
+        print("Result: ", result)
+    }
+    
     var saved_height: String!
     var saved_width: String!
     
@@ -56,6 +79,34 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view.
         
+        let widthField = UITextField()
+        widthField.keyboardType = .numberPad
+        widthField.delegate = self
+        widthField.addTarget(self,
+            action: #selector(self.textFieldFilter), for: .editingChanged)
+        
+        let heightField = UITextField()
+        heightField.keyboardType = .numberPad
+        heightField.delegate = self
+        heightField.addTarget(self,
+            action: #selector(self.textFieldFilter), for: .editingChanged)
+        
+    }
+    
+    func textField(_ textField: UITextField,
+      shouldChangeCharactersIn range: NSRange,
+      replacementString string: String) -> Bool {
+      let invalidCharacters =
+        CharacterSet(charactersIn: "0123456789").inverted
+      return (string.rangeOfCharacter(from: invalidCharacters) == nil)
+    }
+    
+    @objc private func textFieldFilter(_ textField: UITextField) {
+      if let text = textField.text, let intText = Int(text) {
+        textField.text = "\(intText)"
+      } else {
+        textField.text = ""
+      }
     }
     
     
@@ -82,4 +133,26 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     
 
 
+}
+
+extension UITextField {
+    func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
+        let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+
+        let toolbar: UIToolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.items = [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        ]
+        toolbar.sizeToFit()
+
+        self.inputAccessoryView = toolbar
+    }
+
+    // Default actions:
+    @objc func doneButtonTapped() { self.resignFirstResponder() }
+    @objc func cancelButtonTapped() { self.resignFirstResponder() }
 }
