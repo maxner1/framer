@@ -33,6 +33,8 @@ class DefaultLibraryVC: UICollectionViewController {
                                         DefaultPhoto(image: "image22"),
                                         DefaultPhoto(image: "image23"),
                                         DefaultPhoto(image: "image24")]
+    public var masterList = [Selection]()
+    public var currentIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -59,6 +61,8 @@ class DefaultLibraryVC: UICollectionViewController {
             if let indexPaths = collectionView.indexPathsForSelectedItems{
                 let destinationController = segue.destination as! CamRollVC
                 destinationController.defaultPhoto = images[indexPaths[0].row]
+                destinationController.masterList = masterList
+                destinationController.currentIndex = currentIndex
                 collectionView.deselectItem(at: indexPaths[0], animated: false)
             }
         }

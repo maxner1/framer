@@ -12,6 +12,9 @@ class FinalConfirmationViewController: UIViewController {
     public var tempFrameImage: UIImage?
     public var tempPhotoImage: UIImage?
     public var inset: CGFloat?
+    public var masterList = [Selection]()
+    public var frameIndex: Int?
+    public var currentIndex: Int?
     
 
     @IBOutlet weak var frameImage: UIImageView!
@@ -23,7 +26,10 @@ class FinalConfirmationViewController: UIViewController {
 
         let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
         arViewController.image = combineImages()
+        arViewController.masterList = masterList
         self.show(arViewController, sender: nil)
+        
+        
     }
     
     override func viewDidLoad() {
@@ -41,6 +47,9 @@ class FinalConfirmationViewController: UIViewController {
         photoImage.image = tempPhotoImage
         frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
+        
+        
+
         
         
         // Do any additional setup after loading the view.

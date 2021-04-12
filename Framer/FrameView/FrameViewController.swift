@@ -8,139 +8,6 @@
 import UIKit
 
 extension UIImage {
-    func scaleImage(ratio: (CGFloat, CGFloat)) -> UIImage {
-        let maxWidth = CGFloat(370)
-        let maxHeight = CGFloat(500)
-        let viewRatio = CGFloat(0.74)
-        let imgRatio = size.width / size.height
-        
-        var frameWidth = CGFloat(0)
-        var frameHeight = CGFloat(0)
-        var imgWidth = CGFloat(0)
-        var imgHeight = CGFloat(0)
-        
-        if imgRatio >= viewRatio {
-            frameWidth = maxWidth
-            let edges = frameWidth * ratio.0
-            imgWidth = frameWidth - edges
-            imgHeight = imgWidth / imgRatio
-            frameHeight = imgHeight / (1 - ratio.1)
-        } else {
-            frameHeight = maxHeight
-            let edges = frameHeight * ratio.1
-            imgHeight = frameHeight - edges
-            imgWidth = imgHeight * imgRatio
-            frameWidth = imgWidth / (1 - ratio.0)
-        }
-        
-        let newImgSize = CGSize(
-            width: imgWidth,
-            height: imgHeight
-        )
-            
-        // Draw and return the resized UIImage
-        let imgRenderer = UIGraphicsImageRenderer(
-            size: newImgSize
-        )
-            
-        let newImage = imgRenderer.image { _ in
-            self.draw(in: CGRect(
-                origin: .zero,
-                size: newImgSize
-            ))
-        }
-        return newImage
-    }
-    
-    func scaleFrame(img: UIImage, ratio: (CGFloat, CGFloat)) -> UIImage {
-        let maxWidth = CGFloat(370)
-        let maxHeight = CGFloat(500)
-        let viewRatio = CGFloat(0.74)
-        let imgRatio = img.size.width / img.size.height
-        
-        var frameWidth = CGFloat(0)
-        var frameHeight = CGFloat(0)
-        var imgWidth = CGFloat(0)
-        var imgHeight = CGFloat(0)
-        
-        if imgRatio >= viewRatio {
-            frameWidth = maxWidth
-            let edges = frameWidth * ratio.0
-            imgWidth = frameWidth - edges
-            imgHeight = imgWidth / imgRatio
-            frameHeight = imgHeight / (1 - ratio.1)
-        } else {
-            frameHeight = maxHeight
-            let edges = frameHeight * ratio.1
-            imgHeight = frameHeight - edges
-            imgWidth = imgHeight * imgRatio
-            frameWidth = imgWidth / (1 - ratio.0)
-        }
-        
-        let newFrameSize = CGSize(
-            width: frameWidth,
-            height: frameHeight
-        )
-            
-        let frameRenderer = UIGraphicsImageRenderer(
-            size: newFrameSize
-        )
-            
-        let newFrame = frameRenderer.image { _ in
-            self.draw(in: CGRect(
-                origin: .zero,
-                size: newFrameSize
-            ))
-        }
-            
-        return newFrame
-        
-    }
-    
-    func scaleF(img: UIImage) -> UIImage {
-        let maxWidth = CGFloat(370)
-        let maxHeight = CGFloat(500)
-        let viewRatio = CGFloat(0.74)
-        let imgRatio = img.size.width / img.size.height
-        
-        var frameWidth = CGFloat(0)
-        var frameHeight = CGFloat(0)
-        var imgWidth = CGFloat(0)
-        var imgHeight = CGFloat(0)
-        
-        if imgRatio >= viewRatio {
-            frameWidth = maxWidth
-            let edges = self.capInsets.left + self.capInsets.right
-            imgWidth = frameWidth - edges
-            imgHeight = imgWidth / imgRatio
-            frameHeight = imgHeight + self.capInsets.top + self.capInsets.bottom
-        } else {
-            frameHeight = maxHeight
-            let edges = self.capInsets.top + self.capInsets.bottom
-            imgHeight = frameHeight - edges
-            imgWidth = imgHeight * imgRatio
-            frameWidth = imgWidth + self.capInsets.left + self.capInsets.right
-        }
-        
-        let newFrameSize = CGSize(
-            width: frameWidth,
-            height: frameHeight
-        )
-            
-        let frameRenderer = UIGraphicsImageRenderer(
-            size: newFrameSize
-        )
-            
-        let newFrame = frameRenderer.image { _ in
-            self.draw(in: CGRect(
-                origin: .zero,
-                size: newFrameSize
-            ))
-        }
-            
-        return newFrame
-    }
-    
     func scaleI(inset: CGFloat) -> UIImage {
         let maxWidth = CGFloat(370)
         let maxHeight = CGFloat(500)
@@ -184,6 +51,8 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
     let insets : [CGFloat] = [46, 80, 70, 40, 60, 42, 47, 70, 40, 25, 70, 10, 44]
     private var chosenFrameIndex = 0
     public var selectedPhoto : UIImage?
+    public var masterList = [Selection]()
+    public var currentIndex: Int?
 
     @IBOutlet weak var collection: UICollectionView!
     
@@ -218,23 +87,19 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? FinalConfirmationViewController {
             let chosenFrame = frames[chosenFrameIndex]
-            //var frame = chosenFrame
             let inset = UIEdgeInsets(top: insets[chosenFrameIndex],
                                      left: insets[chosenFrameIndex],
                                      bottom: insets[chosenFrameIndex],
                                      right: insets[chosenFrameIndex])
             let finalF = chosenFrame.resizableImage(withCapInsets: inset, resizingMode: UIImage.ResizingMode.stretch)
             let finalImg = selectedPhoto?.scaleI(inset: insets[chosenFrameIndex])
-            //let finalFrame = finalF.scaleF(img: selectedPhoto!)
-            //let finalImg = selectedPhoto?.scaleI()
-            
-            
-            
-            //let finalImg = selectedPhoto!.scaleImage(ratio: ratios[chosenFrameIndex])
-            //let finalFrame = finalF.scaleFrame(img: selectedPhoto!)
             dest.tempFrameImage = finalF
             dest.tempPhotoImage = finalImg
             dest.inset = insets[chosenFrameIndex]
+            //dest.frameIndex = chosenFrameIndex
+            masterList[currentIndex!].frameIndex = chosenFrameIndex
+            dest.masterList = masterList
+            dest.currentIndex = currentIndex
         }
     }
     

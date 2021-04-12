@@ -53,7 +53,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="o8J-kU-54f" kind="show" id="e6c-ig-Ndf"/>
+                                            <action selector="ChoosePhotoFromDefault:" destination="E6y-Hq-sA6" eventType="touchUpInside" id="vOv-HR-Dru"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-kK-lms">
@@ -153,9 +153,9 @@
         <!--Default LibraryVC-->
         <scene sceneID="HCg-od-sDO">
             <objects>
-                <collectionViewController id="o8J-kU-54f" customClass="DefaultLibraryVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="DefaultLibraryVC" id="o8J-kU-54f" customClass="DefaultLibraryVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ABl-P8-0sd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yxH-VJ-rnG">

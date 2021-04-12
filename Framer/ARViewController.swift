@@ -14,6 +14,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var sceneView: ARSCNView!
     var grids = [Grid]()
     var image: UIImage!
+    public var masterList = [Selection]()
+    public var currentIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,14 +112,29 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         // Translate those 2D points to 3D points using hitTest (existing plane)
         let hitTestResults = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
         
+        let hitTest = hitTestResults.first
+        let anchor = hitTest?.anchor as? ARPlaneAnchor
+        
+
         // Get hitTest results and ensure that the hitTest corresponds to a grid that has been placed on a wall
-        guard let hitTest = hitTestResults.first, let anchor = hitTest.anchor as? ARPlaneAnchor, let gridIndex = grids.index(where: { $0.anchor == anchor }) else {
+        guard let gridIndex = grids.firstIndex(where: { $0.anchor == anchor }) else {
+            return  // if not even on grid, not on painting either
+        }
+        
+        // check if on existing painting
+        guard let mlIndex = masterList.firstIndex(where: { $0.anchor == anchor }) else {
+            addPainting(hitTest!, grids[gridIndex])  // if not on painting, still on grid
             return
         }
         
-        
-            
-        addPainting(hitTest, grids[gridIndex])
+        // if painting tapped, edit it
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let finalConfirmationVC = storyBoard.instantiateViewController(withIdentifier: "FinalConfirmationViewController") as! FinalConfirmationViewController
+        finalConfirmationVC.masterList = masterList
+        finalConfirmationVC.currentIndex = mlIndex
+        self.present(finalConfirmationVC, animated: true, completion: nil)
+        // segue to confirmation screen with masterList[mlIndex]????
+        // masterList[mlIndex].removeFromParentNode()
     }
     
     func addPainting(_ hitResult: ARHitTestResult, _ grid: Grid) {

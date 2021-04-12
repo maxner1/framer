@@ -11,7 +11,8 @@ import UIKit
 class PhotoSelectionVC: UIViewController {
     
     public var finalImage: UIImage!
-    public var masterList: Selections!
+    public var masterList = [Selection]()
+    public var currentIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,15 @@ class PhotoSelectionVC: UIViewController {
         ipc.allowsEditing = true
         present(ipc, animated: true)
     }
+    
+    
+    @IBAction func ChoosePhotoFromDefault(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let defaultLibraryVC = storyBoard.instantiateViewController(withIdentifier: "DefaultLibraryVC") as! DefaultLibraryVC
+        defaultLibraryVC.masterList = masterList
+        self.present(defaultLibraryVC, animated: true, completion: nil)
+    }
+    
    
 }
 
@@ -45,7 +55,9 @@ extension PhotoSelectionVC: UIImagePickerControllerDelegate, UINavigationControl
             picker.dismiss(animated: false, completion: nil)
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let camRollVC = storyBoard.instantiateViewController(withIdentifier: "CamRollVC") as! CamRollVC
-            camRollVC.cameraRollPhoto = img;
+            camRollVC.cameraRollPhoto = img
+            camRollVC.masterList = masterList
+            camRollVC.currentIndex = currentIndex
 //            navigationController?.pushViewController(newViewController, animated: true)
             self.finalImage = img
             self.present(camRollVC, animated: true, completion: nil)
