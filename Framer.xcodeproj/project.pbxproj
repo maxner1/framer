@@ -14,6 +14,7 @@
 		1A3785FB25EC61E9002AD1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */; };
 		1A3785FE25EC61E9002AD1A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */; };
 		1A6E816E26050497002B5945 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E816D26050497002B5945 /* ARViewController.swift */; };
+		1A7C647E2623CCA400D37CCE /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C647D2623CCA400D37CCE /* icons */; };
 		1AFCC12E25FEBAB700BFAA71 /* FinalConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCC12D25FEBAB700BFAA71 /* FinalConfirmationViewController.swift */; };
 		2583661B25FB6E91001B0A11 /* CamRollVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2583661A25FB6E91001B0A11 /* CamRollVC.swift */; };
 		25836643260B23CF001B0A11 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2583663C260B23CF001B0A11 /* Lato-Italic.ttf */; };
@@ -42,6 +43,7 @@
 		1A3785FD25EC61E9002AD1A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A3785FF25EC61E9002AD1A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6E816D26050497002B5945 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		1A7C647D2623CCA400D37CCE /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 		1AFCC12D25FEBAB700BFAA71 /* FinalConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalConfirmationViewController.swift; sourceTree = "<group>"; };
 		2583661A25FB6E91001B0A11 /* CamRollVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamRollVC.swift; sourceTree = "<group>"; };
 		2583663C260B23CF001B0A11 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		1A3785F025EC61E4002AD1A0 /* Framer */ = {
 			isa = PBXGroup;
 			children = (
+				1A7C647D2623CCA400D37CCE /* icons */,
 				360BC46B25FDCAB800594DAD /* FrameView */,
 				1A3785F125EC61E4002AD1A0 /* AppDelegate.swift */,
 				B932551025FE2E08004553B1 /* PhotoSelection */,
@@ -199,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7C647E2623CCA400D37CCE /* icons in Resources */,
 				25836646260B23CF001B0A11 /* Lato-Bold.ttf in Resources */,
 				1A3785FE25EC61E9002AD1A0 /* LaunchScreen.storyboard in Resources */,
 				25836645260B23CF001B0A11 /* Lato-Thin.ttf in Resources */,
