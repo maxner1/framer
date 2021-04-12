@@ -14,6 +14,7 @@
 		1A3785FB25EC61E9002AD1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FA25EC61E9002AD1A0 /* Assets.xcassets */; };
 		1A3785FE25EC61E9002AD1A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3785FC25EC61E9002AD1A0 /* LaunchScreen.storyboard */; };
 		1A6E816E26050497002B5945 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E816D26050497002B5945 /* ARViewController.swift */; };
+		1A7C647E2623CCA400D37CCE /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C647D2623CCA400D37CCE /* icons */; };
 		1AFCC12E25FEBAB700BFAA71 /* FinalConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCC12D25FEBAB700BFAA71 /* FinalConfirmationViewController.swift */; };
 		2583661B25FB6E91001B0A11 /* CamRollVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2583661A25FB6E91001B0A11 /* CamRollVC.swift */; };
 		25836643260B23CF001B0A11 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2583663C260B23CF001B0A11 /* Lato-Italic.ttf */; };
@@ -25,6 +26,7 @@
 		25836649260B23CF001B0A11 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25836642260B23CF001B0A11 /* Lato-ThinItalic.ttf */; };
 		360BC47525FDCB5600594DAD /* FrameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */; };
 		360BC47F25FDDA6500594DAD /* FrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC47E25FDDA6500594DAD /* FrameViewController.swift */; };
+		8172C9062623C08500808AE5 /* Selections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172C9052623C08500808AE5 /* Selections.swift */; };
 		81D9417B26151DD4004F3041 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D9417A26151DD4004F3041 /* Grid.swift */; };
 		B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */; };
 		B9505CD925FDC13B001DA34B /* DefaultPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */; };
@@ -42,6 +44,7 @@
 		1A3785FD25EC61E9002AD1A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A3785FF25EC61E9002AD1A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6E816D26050497002B5945 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		1A7C647D2623CCA400D37CCE /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 		1AFCC12D25FEBAB700BFAA71 /* FinalConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalConfirmationViewController.swift; sourceTree = "<group>"; };
 		2583661A25FB6E91001B0A11 /* CamRollVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamRollVC.swift; sourceTree = "<group>"; };
 		2583663C260B23CF001B0A11 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		25836642260B23CF001B0A11 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCollectionViewCell.swift; sourceTree = "<group>"; };
 		360BC47E25FDDA6500594DAD /* FrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameViewController.swift; sourceTree = "<group>"; };
+		8172C9052623C08500808AE5 /* Selections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selections.swift; sourceTree = "<group>"; };
 		81D9417A26151DD4004F3041 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionVC.swift; sourceTree = "<group>"; };
 		B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPhotoCell.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		1A3785F025EC61E4002AD1A0 /* Framer */ = {
 			isa = PBXGroup;
 			children = (
+				1A7C647D2623CCA400D37CCE /* icons */,
 				360BC46B25FDCAB800594DAD /* FrameView */,
 				1A3785F125EC61E4002AD1A0 /* AppDelegate.swift */,
 				B932551025FE2E08004553B1 /* PhotoSelection */,
@@ -125,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				360BC47E25FDDA6500594DAD /* FrameViewController.swift */,
+				8172C9052623C08500808AE5 /* Selections.swift */,
 				360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */,
 			);
 			path = FrameView;
@@ -199,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7C647E2623CCA400D37CCE /* icons in Resources */,
 				25836646260B23CF001B0A11 /* Lato-Bold.ttf in Resources */,
 				1A3785FE25EC61E9002AD1A0 /* LaunchScreen.storyboard in Resources */,
 				25836645260B23CF001B0A11 /* Lato-Thin.ttf in Resources */,
@@ -226,6 +233,7 @@
 				2583661B25FB6E91001B0A11 /* CamRollVC.swift in Sources */,
 				81D9417B26151DD4004F3041 /* Grid.swift in Sources */,
 				B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */,
+				8172C9062623C08500808AE5 /* Selections.swift in Sources */,
 				1A6E816E26050497002B5945 /* ARViewController.swift in Sources */,
 				360BC47F25FDDA6500594DAD /* FrameViewController.swift in Sources */,
 				B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */,
@@ -380,13 +388,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3W5SRLWU74;
+				DEVELOPMENT_TEAM = BGW6U8V626;
 				INFOPLIST_FILE = Framer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = umich.edu.maxner.framerios;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.umich.bwats.Framer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -399,13 +407,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3W5SRLWU74;
+				DEVELOPMENT_TEAM = BGW6U8V626;
 				INFOPLIST_FILE = Framer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = umich.edu.maxner.framerios;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.umich.bwats.Framer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

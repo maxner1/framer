@@ -7,14 +7,20 @@
 
 import UIKit
 
+class SingletonClass {
+    static let sharedInstance = SingletonClass()
+    private init() {}
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    public var masterList: Selections?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        masterList = Selections()
         return true
     }
 

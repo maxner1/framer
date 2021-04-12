@@ -11,6 +11,7 @@ import UIKit
 class PhotoSelectionVC: UIViewController {
     
     public var finalImage: UIImage!
+    public var masterList: Selections!
     
     override func viewDidLoad() {
         super.viewDidLoad()
