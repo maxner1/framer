@@ -26,6 +26,7 @@
 		25836649260B23CF001B0A11 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25836642260B23CF001B0A11 /* Lato-ThinItalic.ttf */; };
 		360BC47525FDCB5600594DAD /* FrameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */; };
 		360BC47F25FDDA6500594DAD /* FrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC47E25FDDA6500594DAD /* FrameViewController.swift */; };
+		8172C9062623C08500808AE5 /* Selections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172C9052623C08500808AE5 /* Selections.swift */; };
 		81D9417B26151DD4004F3041 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D9417A26151DD4004F3041 /* Grid.swift */; };
 		B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */; };
 		B9505CD925FDC13B001DA34B /* DefaultPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */; };
@@ -55,6 +56,7 @@
 		25836642260B23CF001B0A11 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCollectionViewCell.swift; sourceTree = "<group>"; };
 		360BC47E25FDDA6500594DAD /* FrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameViewController.swift; sourceTree = "<group>"; };
+		8172C9052623C08500808AE5 /* Selections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selections.swift; sourceTree = "<group>"; };
 		81D9417A26151DD4004F3041 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		B9505CBD25FAB637001DA34B /* PhotoSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionVC.swift; sourceTree = "<group>"; };
 		B9505CD825FDC13B001DA34B /* DefaultPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPhotoCell.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				360BC47E25FDDA6500594DAD /* FrameViewController.swift */,
+				8172C9052623C08500808AE5 /* Selections.swift */,
 				360BC47425FDCB5600594DAD /* FrameCollectionViewCell.swift */,
 			);
 			path = FrameView;
@@ -230,6 +233,7 @@
 				2583661B25FB6E91001B0A11 /* CamRollVC.swift in Sources */,
 				81D9417B26151DD4004F3041 /* Grid.swift in Sources */,
 				B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */,
+				8172C9062623C08500808AE5 /* Selections.swift in Sources */,
 				1A6E816E26050497002B5945 /* ARViewController.swift in Sources */,
 				360BC47F25FDDA6500594DAD /* FrameViewController.swift in Sources */,
 				B9505CBE25FAB637001DA34B /* PhotoSelectionVC.swift in Sources */,
