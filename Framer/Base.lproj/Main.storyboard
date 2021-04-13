@@ -422,7 +422,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd0-SP-nTj">
-                                <rect key="frame" x="47" y="20" width="278.5" height="60"/>
+                                <rect key="frame" x="68" y="20" width="278.5" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="SPO-fK-0br"/>
                                 </constraints>
@@ -435,7 +435,6 @@
                         <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="trailing" secondItem="q0z-qE-vqo" secondAttribute="trailing" constant="61" id="5E0-uX-pC1"/>
-                            <constraint firstItem="cd0-SP-nTj" firstAttribute="leading" secondItem="YTF-CE-zqG" secondAttribute="leading" constant="47" id="6kL-EO-4Wf"/>
                             <constraint firstItem="eqm-vK-dG5" firstAttribute="leading" secondItem="YTF-CE-zqG" secondAttribute="leading" constant="102" id="8dZ-Xh-By2"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="trailing" secondItem="YNr-Xr-3qf" secondAttribute="trailing" constant="61" id="8pM-oV-3n7"/>
                             <constraint firstItem="ETa-Ki-8lv" firstAttribute="centerX" secondItem="esI-Fn-OKK" secondAttribute="centerX" id="8yi-02-2te"/>
@@ -450,6 +449,7 @@
                             <constraint firstItem="ETa-Ki-8lv" firstAttribute="leading" secondItem="esI-Fn-OKK" secondAttribute="leading" id="YSz-KB-E9C"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="bottom" secondItem="oVH-SC-vug" secondAttribute="bottom" id="aP4-pn-5yK"/>
                             <constraint firstItem="esI-Fn-OKK" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="gpD-VU-Kxr"/>
+                            <constraint firstItem="cd0-SP-nTj" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="hD9-Ao-U3K"/>
                             <constraint firstItem="q0z-qE-vqo" firstAttribute="top" secondItem="YNr-Xr-3qf" secondAttribute="bottom" constant="37" id="lxy-xG-fXK"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="bottom" secondItem="8t9-1X-52B" secondAttribute="bottom" constant="114" id="tpw-7t-82p"/>
                             <constraint firstItem="ETa-Ki-8lv" firstAttribute="top" secondItem="esI-Fn-OKK" secondAttribute="top" id="wCM-ar-Yjx"/>
