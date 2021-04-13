@@ -12,7 +12,9 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     public var tempFrameImage: UIImage?
     public var tempPhotoImage: UIImage?
     public var inset: CGFloat?
-    var user_width = 200
+    public var user_img_sz = CGSize.init()
+    public var img_ratio: CGFloat?
+    public var original_img : UIImage?
     
 
     @IBOutlet weak var frameImage: UIImageView!
@@ -28,9 +30,22 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     @objc func doneButtonTappedForWidthField() {
         print("Done");
         let result = widthField.resignFirstResponder()
-        user_width = Int(widthField.text!) ?? 1
+        let user_width = (Int(widthField.text!) ?? 1) * 20
         print("Result: ", result)
-        
+        // Calculate new aspect ratio
+        if (user_img_sz.width <= CGFloat(user_width)) {
+            // Save user input for width
+            let nr = CGFloat(user_width) / user_img_sz.width
+            user_img_sz.width = CGFloat(user_width)
+            user_img_sz.height = nr * user_img_sz.height
+        }
+        else {
+            let nr = user_img_sz.width / CGFloat(user_width)
+            user_img_sz.width = CGFloat(user_width)
+            user_img_sz.height = user_img_sz.height / nr
+        }
+        tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+        photoImage.image = tempPhotoImage
     }
     
     @IBOutlet weak var heightField: UITextField! {
@@ -42,7 +57,22 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     @objc func doneButtonTappedForHeightField() {
         print("Done");
         let result = heightField.resignFirstResponder()
+        let user_ht = (Int(heightField.text!) ?? 1) * 20
         print("Result: ", result)
+        // Calculate new aspect ratio
+        if (user_img_sz.height <= CGFloat(user_ht)) {
+            // Save user input for width
+            let nr = CGFloat(user_ht) / user_img_sz.height
+            user_img_sz.height = CGFloat(user_ht)
+            user_img_sz.width = nr * user_img_sz.width
+        }
+        else {
+            let nr = user_img_sz.height / CGFloat(user_ht)
+            user_img_sz.height = CGFloat(user_ht)
+            user_img_sz.width = user_img_sz.width / nr
+        }
+        tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+        photoImage.image = tempPhotoImage
     }
     
     var saved_height: String!
@@ -73,9 +103,13 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         //photoImage.heightAnchor.constraint(equalToConstant: H).isActive = true
         //photoImage.widthAnchor.constraint(equalToConstant: W).isActive = true
-        tempPhotoImage = resizeImage(image: tempPhotoImage!, newWidth: CGFloat(user_width))
+        user_img_sz.width = (tempPhotoImage?.size.width)!
+        user_img_sz.height = (tempPhotoImage?.size.height)!
+        img_ratio = user_img_sz.width / user_img_sz.height
+        tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
         
         frameImage.image = tempFrameImage
+        original_img = tempPhotoImage
         photoImage.image = tempPhotoImage
         
         frameImage.layer.zPosition = 1
@@ -131,14 +165,10 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
       }
     }
     
-    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
-        let scale = newWidth / image.size.width
-        let newHt = image.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHt))
-        image.draw(in: CGRect(x:0, y:0, width: newWidth, height: newHt))
-        let newImg = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImg
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size: targetSize).image { _ in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
     }
     
     func combineImages()-> UIImage {
