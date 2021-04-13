@@ -11,6 +11,7 @@ class CamRollVC: UIViewController {
     private var finalPhoto : UIImage?
     public var masterList = [Selection]()
     public var currentIndex: Int?
+    public var flow = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class CamRollVC: UIViewController {
             dest.selectedPhoto = finalPhoto
             dest.masterList = masterList
             dest.currentIndex = currentIndex
+            dest.flow = flow
         }
     }
 }

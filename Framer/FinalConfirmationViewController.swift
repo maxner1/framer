@@ -8,7 +8,7 @@
 import UIKit
 
 class FinalConfirmationViewController: UIViewController {
-    
+    public var flow = 0
     public var tempFrameImage: UIImage?
     public var tempPhotoImage: UIImage?
     public var inset: CGFloat?
@@ -16,21 +16,33 @@ class FinalConfirmationViewController: UIViewController {
     //public var frameIndex: Int?
     public var currentIndex: Int?
     
-
+    
     @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     
     @IBAction func doneButtonTapped(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        // Return to running AR Scene
+        if (flow != 0) {
+            if (flow == 1) {
+                dismiss(animated: true, completion: nil)
+            }
+            else if (flow == 2) {
+                self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+            else if (flow == 3) {
+                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+        }
+        else { // Instantiate new AR View Controller
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
-        let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
-        //arViewController.image = combineImages()
-        arViewController.currentIndex = currentIndex
-        arViewController.masterList = masterList
-        self.show(arViewController, sender: nil)
-        
-        
+            let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
+            //arViewController.image = combineImages()
+            arViewController.currentIndex = currentIndex
+            arViewController.masterList = masterList
+            self.show(arViewController, sender: nil)
+        }
     }
     
     override func viewDidLoad() {

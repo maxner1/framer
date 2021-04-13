@@ -12,7 +12,10 @@ class PhotoSelectionVC: UIViewController {
     
     public var finalImage: UIImage!
     public var masterList = [Selection]()
-    public var currentIndex: Int?
+    public var currentIndex: Int
+    // For recognizing how many views to dismiss
+    public var flow = 0
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,7 @@ class PhotoSelectionVC: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let defaultLibraryVC = storyBoard.instantiateViewController(withIdentifier: "DefaultLibraryVC") as! DefaultLibraryVC
         defaultLibraryVC.masterList = masterList
+        defaultLibraryVC.flow = 3
         self.present(defaultLibraryVC, animated: true, completion: nil)
     }
     
@@ -58,6 +62,7 @@ extension PhotoSelectionVC: UIImagePickerControllerDelegate, UINavigationControl
             camRollVC.cameraRollPhoto = img
             camRollVC.masterList = masterList
             camRollVC.currentIndex = currentIndex
+            camRollVC.flow = flow
 //            navigationController?.pushViewController(newViewController, animated: true)
             self.finalImage = img
             self.present(camRollVC, animated: true, completion: nil)

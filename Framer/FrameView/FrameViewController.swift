@@ -53,6 +53,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
     public var selectedPhoto : UIImage?
     public var masterList = [Selection]()
     public var currentIndex: Int?
+    public var flow = 0
 
     @IBOutlet weak var collection: UICollectionView!
     
@@ -99,6 +100,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
             masterList[currentIndex!].frameIndex = chosenFrameIndex
             dest.masterList = masterList
             dest.currentIndex = currentIndex
+            dest.flow = flow
             
             // pass in frame w/h somewhere in here
         }

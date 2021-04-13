@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class DefaultLibraryVC: UICollectionViewController {
+    public var flow = 0
     private var images : [DefaultPhoto] = [ DefaultPhoto(image: "image1"),
                                         DefaultPhoto(image: "image2"),
                                         DefaultPhoto(image: "image3"),
@@ -63,6 +64,7 @@ class DefaultLibraryVC: UICollectionViewController {
                 destinationController.defaultPhoto = images[indexPaths[0].row]
                 destinationController.masterList = masterList
                 destinationController.currentIndex = currentIndex
+                destinationController.flow = flow
                 collectionView.deselectItem(at: indexPaths[0], animated: false)
             }
         }
