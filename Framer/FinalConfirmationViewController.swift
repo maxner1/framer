@@ -28,10 +28,10 @@ class FinalConfirmationViewController: UIViewController {
                 dismiss(animated: true, completion: nil)
             }
             else if (flow == 2) {
-                self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             }
             else if (flow == 3) {
-                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             }
         }
         else { // Instantiate new AR View Controller

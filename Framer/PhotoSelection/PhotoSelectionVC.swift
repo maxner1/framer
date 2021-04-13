@@ -12,7 +12,7 @@ class PhotoSelectionVC: UIViewController {
     
     public var finalImage: UIImage!
     public var masterList = [Selection]()
-    public var currentIndex: Int
+    public var currentIndex: Int?
     // For recognizing how many views to dismiss
     public var flow = 0
 
@@ -42,7 +42,9 @@ class PhotoSelectionVC: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let defaultLibraryVC = storyBoard.instantiateViewController(withIdentifier: "DefaultLibraryVC") as! DefaultLibraryVC
         defaultLibraryVC.masterList = masterList
-        defaultLibraryVC.flow = 3
+        if (flow != 0) {
+            defaultLibraryVC.flow = 3
+        }
         self.present(defaultLibraryVC, animated: true, completion: nil)
     }
     
