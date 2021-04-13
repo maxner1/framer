@@ -11,12 +11,11 @@ import UIKit
 class PhotoSelectionVC: UIViewController {
     
     public var finalImage: UIImage!
-    public var masterList = [Selection]()
-    public var currentIndex: Int?
+    //public var masterList = [Selection]()
+    //public var currentIndex: Int?
     // For recognizing how many views to dismiss
     public var flow = 0
-
-    
+    public var arView: ARViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -41,9 +40,10 @@ class PhotoSelectionVC: UIViewController {
     @IBAction func ChoosePhotoFromDefault(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let defaultLibraryVC = storyBoard.instantiateViewController(withIdentifier: "DefaultLibraryVC") as! DefaultLibraryVC
-        defaultLibraryVC.masterList = masterList
+        //defaultLibraryVC.masterList = masterList
         if (flow != 0) {
             defaultLibraryVC.flow = 3
+            defaultLibraryVC.arView = arView
         }
         self.present(defaultLibraryVC, animated: true, completion: nil)
     }
@@ -62,9 +62,10 @@ extension PhotoSelectionVC: UIImagePickerControllerDelegate, UINavigationControl
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let camRollVC = storyBoard.instantiateViewController(withIdentifier: "CamRollVC") as! CamRollVC
             camRollVC.cameraRollPhoto = img
-            camRollVC.masterList = masterList
-            camRollVC.currentIndex = currentIndex
             camRollVC.flow = flow
+            if (flow != 0) {
+                camRollVC.arView = arView
+            }
 //            navigationController?.pushViewController(newViewController, animated: true)
             self.finalImage = img
             self.present(camRollVC, animated: true, completion: nil)

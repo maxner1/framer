@@ -15,6 +15,7 @@ class FinalConfirmationViewController: UIViewController {
     public var masterList = [Selection]()
     //public var frameIndex: Int?
     public var currentIndex: Int?
+    public var arView: ARViewController?
     
     
     @IBOutlet weak var frameImage: UIImageView!
@@ -28,9 +29,14 @@ class FinalConfirmationViewController: UIViewController {
                 dismiss(animated: true, completion: nil)
             }
             else if (flow == 2) {
+                arView!.currentIndex = currentIndex
+                arView!.masterList = masterList
                 self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                
             }
             else if (flow == 3) {
+                arView!.currentIndex = currentIndex
+                arView!.masterList = masterList
                 self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             }
         }

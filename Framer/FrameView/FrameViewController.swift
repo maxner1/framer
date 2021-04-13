@@ -54,6 +54,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
     public var masterList = [Selection]()
     public var currentIndex: Int?
     public var flow = 0
+    public var arView: ARViewController?
 
     @IBOutlet weak var collection: UICollectionView!
     
@@ -101,7 +102,9 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
             dest.masterList = masterList
             dest.currentIndex = currentIndex
             dest.flow = flow
-            
+            if (flow != 0) {
+                dest.arView = arView
+            }
             // pass in frame w/h somewhere in here
         }
     }

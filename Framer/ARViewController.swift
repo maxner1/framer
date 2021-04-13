@@ -147,6 +147,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     func addPainting(_ hitResult: ARRaycastResult, _ grid: Grid) {
         // 1.
         let planeGeometry = SCNPlane(width: 0.2, height: 0.35)
+        print(currentIndex!)
         masterList[currentIndex!].anchor = hitResult.anchor
         let material = SCNMaterial()
         material.diffuse.contents = masterList[currentIndex!].fullImg
@@ -173,8 +174,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func AddImage(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let photoSelectionVC = storyBoard.instantiateViewController(withIdentifier: "PhotoSelectionVC") as! PhotoSelectionVC
-        photoSelectionVC.masterList = masterList
+        //photoSelectionVC.masterList = masterList
+        //photoSelectionVC.currentIndex = nil
         photoSelectionVC.flow = 2
+        photoSelectionVC.arView = self
         self.present(photoSelectionVC, animated: true, completion: nil)
     }
 }

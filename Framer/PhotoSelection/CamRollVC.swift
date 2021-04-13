@@ -12,6 +12,7 @@ class CamRollVC: UIViewController {
     public var masterList = [Selection]()
     public var currentIndex: Int?
     public var flow = 0
+    public var arView: ARViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +25,19 @@ class CamRollVC: UIViewController {
         finalPhoto = imageView.image
         
         // add/update masterList entry, resizing w/h to be added
+        /*
         if currentIndex != nil {
             masterList[currentIndex!].photo = finalPhoto
-        } else {
-            let newSelection = Selection(img: finalPhoto!)
+        }
+        */
+        let newSelection = Selection(img: finalPhoto!)
+        if (flow != 0) {
+            arView!.masterList.append(newSelection)
+            arView!.currentIndex = arView!.masterList.endIndex - 1
+            masterList = arView!.masterList
+            currentIndex = arView!.currentIndex
+        }
+        else {
             masterList.append(newSelection)
             currentIndex = masterList.endIndex - 1
         }
@@ -39,6 +49,9 @@ class CamRollVC: UIViewController {
             dest.masterList = masterList
             dest.currentIndex = currentIndex
             dest.flow = flow
+            if (flow != 0) {
+                dest.arView = arView
+            }
         }
     }
 }
