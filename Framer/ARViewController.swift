@@ -169,7 +169,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         configuration.isLightEstimationEnabled = true
         sceneView.session.run(configuration)
     }
-    
-
+        
+    @IBAction func AddImage(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let photoSelectionVC = storyBoard.instantiateViewController(withIdentifier: "PhotoSelectionVC") as! PhotoSelectionVC
+        photoSelectionVC.masterList = masterList
+        photoSelectionVC.flow = 2
+        self.present(photoSelectionVC, animated: true, completion: nil)
+    }
 }
 
