@@ -20,6 +20,7 @@ class Selection : SCNNode {
     var fullImg: UIImage?
     
     var anchor: ARAnchor?  // might not use
+    var hitTest: ARRaycastResult?
     var planeGeometry: SCNPlane! // might not use
     
     //init(anchor: ARPlaneAnchor) {

@@ -32,8 +32,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        sceneView.addGestureRecognizer(gestureRecognizer)
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        sceneView.addGestureRecognizer(singleTap)
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dblTapped))
+        sceneView.addGestureRecognizer(doubleTap)
+        singleTap.numberOfTapsRequired = 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +109,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         foundGrid.update(anchor: planeAnchor)
     }
     
+    @objc func dblTapped(gesture: UITapGestureRecognizer) {
+        // for deletes
+    }
+    
     @objc func tapped(gesture: UITapGestureRecognizer) {
         // Get 2D position of touch event on screen
         let touchPosition = gesture.location(in: sceneView)
@@ -129,7 +137,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         
         // check if on existing painting
-        guard let mlIndex = masterList.firstIndex(where: { $0.anchor == anchor }) else {
+        guard let mlIndex = masterList.firstIndex(where: { $0.hitTest == hitTest }) else {
             addPainting(hitTest, grids[gridIndex])  // if not on painting, still on grid
             return
         }
@@ -149,6 +157,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let planeGeometry = SCNPlane(width: 0.2, height: 0.35)
         print(currentIndex!)
         masterList[currentIndex!].anchor = hitResult.anchor
+        masterList[currentIndex!].hitTest = hitResult
         let material = SCNMaterial()
         material.diffuse.contents = masterList[currentIndex!].fullImg
         planeGeometry.materials = [material]
@@ -174,8 +183,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func AddImage(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let photoSelectionVC = storyBoard.instantiateViewController(withIdentifier: "PhotoSelectionVC") as! PhotoSelectionVC
-        //photoSelectionVC.masterList = masterList
-        //photoSelectionVC.currentIndex = nil
         photoSelectionVC.flow = 2
         photoSelectionVC.arView = self
         self.present(photoSelectionVC, animated: true, completion: nil)
