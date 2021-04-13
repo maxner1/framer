@@ -12,6 +12,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     public var tempFrameImage: UIImage?
     public var tempPhotoImage: UIImage?
     public var inset: CGFloat?
+    var user_width = 200
     
 
     @IBOutlet weak var frameImage: UIImageView!
@@ -27,7 +28,9 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     @objc func doneButtonTappedForWidthField() {
         print("Done");
         let result = widthField.resignFirstResponder()
+        user_width = Int(widthField.text!) ?? 1
         print("Result: ", result)
+        
     }
     
     @IBOutlet weak var heightField: UITextField! {
@@ -65,14 +68,16 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         // print(tempFrameImage)
         // print(tempPhotoImage)
         
-        let H = (tempPhotoImage?.size.height)! + (2*((tempFrameImage?.capInsets.top)!))
-        let W = (tempPhotoImage?.size.width)! + (2*((tempFrameImage?.capInsets.left)!))
+        //let H = (tempPhotoImage?.size.height)! + (1111111111111*((tempFrameImage?.capInsets.top)!))
+        //let W = (tempPhotoImage?.size.width)! + (11*((tempFrameImage?.capInsets.left)!))
         
-        frameImage.heightAnchor.constraint(equalToConstant: H).isActive = true
-        frameImage.widthAnchor.constraint(equalToConstant: W).isActive = true
+        //photoImage.heightAnchor.constraint(equalToConstant: H).isActive = true
+        //photoImage.widthAnchor.constraint(equalToConstant: W).isActive = true
+        tempPhotoImage = resizeImage(image: tempPhotoImage!, newWidth: CGFloat(user_width))
         
         frameImage.image = tempFrameImage
         photoImage.image = tempPhotoImage
+        
         frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
         
@@ -126,6 +131,15 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
       }
     }
     
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        let scale = newWidth / image.size.width
+        let newHt = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHt))
+        image.draw(in: CGRect(x:0, y:0, width: newWidth, height: newHt))
+        let newImg = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImg
+    }
     
     func combineImages()-> UIImage {
             let bottomImage = frameImage.image
