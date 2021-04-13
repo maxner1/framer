@@ -19,7 +19,7 @@ class Selection : SCNNode {
     var frameH: CGFloat = 0
     var fullImg: UIImage?
     
-    var anchor: ARPlaneAnchor?  // might not use
+    var anchor: ARAnchor?  // might not use
     var planeGeometry: SCNPlane! // might not use
     
     //init(anchor: ARPlaneAnchor) {

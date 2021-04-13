@@ -110,11 +110,17 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let touchPosition = gesture.location(in: sceneView)
         
         // Translate those 2D points to 3D points using hitTest (existing plane)
-        //let hitTestResults = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
-        let hitTestResults = sceneView.raycastQuery(from: touchPosition, allowing: <#T##ARRaycastQuery.Target#>, alignment: <#T##ARRaycastQuery.TargetAlignment#>)
+        guard let query = sceneView.raycastQuery(from: touchPosition,
+                                                   allowing: ARRaycastQuery.Target.existingPlaneGeometry,
+                                                   alignment: ARRaycastQuery.TargetAlignment.vertical) else {
+            return
+        }
         
-        let hitTest = hitTestResults.first
-        let anchor = hitTest?.anchor as? ARPlaneAnchor
+        guard let hitTest = sceneView.session.raycast(query).first else {
+            return
+        }
+        
+        let anchor = hitTest.anchor as? ARPlaneAnchor
         
 
         // Get hitTest results and ensure that the hitTest corresponds to a grid that has been placed on a wall
@@ -124,13 +130,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         // check if on existing painting
         guard let mlIndex = masterList.firstIndex(where: { $0.anchor == anchor }) else {
-            addPainting(hitTest!, grids[gridIndex])  // if not on painting, still on grid
+            addPainting(hitTest, grids[gridIndex])  // if not on painting, still on grid
             return
         }
         
         // if painting tapped, edit it
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let finalConfirmationVC = storyBoard.instantiateViewController(withIdentifier: "FinalConfirmationViewController") as! FinalConfirmationViewController
+        let finalConfirmationVC = storyBoard.instantiateViewController(withIdentifier: "finalConfirmationVC") as! FinalConfirmationViewController
         finalConfirmationVC.masterList = masterList
         finalConfirmationVC.currentIndex = mlIndex
         self.present(finalConfirmationVC, animated: true, completion: nil)
@@ -138,10 +144,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         // masterList[mlIndex].removeFromParentNode()
     }
     
-    func addPainting(_ hitResult: ARHitTestResult, _ grid: Grid) {
+    func addPainting(_ hitResult: ARRaycastResult, _ grid: Grid) {
         // 1.
         let planeGeometry = SCNPlane(width: 0.2, height: 0.35)
-        let masterList[currentIndex!].anchor = hitResult.anchor
+        masterList[currentIndex!].anchor = hitResult.anchor
         let material = SCNMaterial()
         material.diffuse.contents = masterList[currentIndex!].fullImg
         planeGeometry.materials = [material]
