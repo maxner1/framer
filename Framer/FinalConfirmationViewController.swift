@@ -7,18 +7,20 @@
 
 import UIKit
 
-class FinalConfirmationViewController: UIViewController {
+class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     public var flow = 0
-    //public var tempFrameImage: UIImage?
-    //public var tempPhotoImage: UIImage?
+    public var tempPhotoImage: UIImage?
     //public var inset: CGFloat?
     public var masterList = [Selection]()
+    public var user_img_sz = CGSize.init()
+    public var img_ratio: CGFloat?
+    public var original_img : UIImage?
+    public var frameImage: UIImage?
     //public var frameIndex: Int?
     public var currentIndex: Int?
     public var arView: ARViewController?
     
     
-    @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     
@@ -126,20 +128,25 @@ class FinalConfirmationViewController: UIViewController {
         let H = (masterList[currentIndex!].photo!.size.height) + (2*((masterList[currentIndex!].frame!.capInsets.top)))
         let W = (masterList[currentIndex!].photo!.size.width) + (2*((masterList[currentIndex!].frame!.capInsets.left)))
         
-        //photoImage.heightAnchor.constraint(equalToConstant: H).isActive = true
-        //photoImage.widthAnchor.constraint(equalToConstant: W).isActive = true
-        user_img_sz.width = (tempPhotoImage?.size.width)!
+        frameImage = masterList[currentIndex!].frame
+        photoImage.image = masterList[currentIndex!].photo
+        photoImage.layer.zPosition = 2
+        
+        masterList[currentIndex!].fullImg = combineImages()
+        
+        photoImage.image = masterList[currentIndex!].fullImg
+        
+        tempPhotoImage = masterList[currentIndex!].fullImg
+        
+        original_img = masterList[currentIndex!].fullImg
+        
+        user_img_sz.width = (masterList[currentIndex!].photo?.size.width)!
         user_img_sz.height = (tempPhotoImage?.size.height)!
         img_ratio = user_img_sz.width / user_img_sz.height
         tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
         
-
-        frameImage.image = masterList[currentIndex!].frame
-        photoImage.image = masterList[currentIndex!].photo
-        frameImage.layer.zPosition = 1
-        photoImage.layer.zPosition = 2
-        
-        masterList[currentIndex!].fullImg = combineImages()
+        widthField.text = "\(Int(user_img_sz.width/20))"
+        heightField.text = "\(Int(user_img_sz.height/20))"
         
         
         // Do any additional setup after loading the view.
@@ -198,7 +205,7 @@ class FinalConfirmationViewController: UIViewController {
     }
     
     func combineImages()-> UIImage {  // could be rewritten to add dims directly to fullImg in Selection
-            let bottomImage = frameImage.image
+            let bottomImage = frameImage
             let topImage = photoImage.image
         let size = CGSize(width: topImage!.size.width + masterList[currentIndex!].inset! * 2,
                           height: topImage!.size.height + masterList[currentIndex!].inset! * 2)
@@ -218,7 +225,7 @@ class FinalConfirmationViewController: UIViewController {
             return newImage
         }
     
-
+}
 
 
 
