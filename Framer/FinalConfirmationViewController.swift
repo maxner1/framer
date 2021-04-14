@@ -37,7 +37,8 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         let user_width = (Int(widthField.text!) ?? 1) * 20
         print("Result: ", result)
         // Calculate new aspect ratio
-        
+        //print("userWidth: ", user_width)
+        masterList[currentIndex!].width = CGFloat(Int(widthField.text!)!)
         if (user_width <= 12 * 20) {
             if (user_img_sz.width <= CGFloat(user_width)) {
                 // Save user input for width
@@ -92,9 +93,12 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func doneButtonTapped(_ sender: Any) {
         // Return to running AR Scene
+        print("FCVC flow: ", flow)
         if (flow != 0) {
             print(masterList.count)
             if (flow == 1) {
+                arView!.currentIndex = currentIndex
+                arView!.masterList = masterList
                 finalVC!.presentingViewController?.dismiss(animated: true, completion: nil)
                 //dismiss(animated: true, completion: nil)
             }
@@ -130,8 +134,8 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let H = (masterList[currentIndex!].photo!.size.height) + (2*((masterList[currentIndex!].frame!.capInsets.top)))
-        let W = (masterList[currentIndex!].photo!.size.width) + (2*((masterList[currentIndex!].frame!.capInsets.left)))
+        //let H = (masterList[currentIndex!].photo!.size.height) + (2*((masterList[currentIndex!].frame!.capInsets.top)))
+        //let W = (masterList[currentIndex!].photo!.size.width) + (2*((masterList[currentIndex!].frame!.capInsets.left)))
         
         frameImage = masterList[currentIndex!].frame
         photoImage.image = masterList[currentIndex!].photo
@@ -156,6 +160,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         let user_width = 12 * 20
         // Calculate new aspect ratio
         
+        
         if (user_img_sz.width <= CGFloat(user_width)) {
             // Save user input for width
             let nr = CGFloat(user_width) / user_img_sz.width
@@ -173,6 +178,8 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         widthField.text = "\(Int(user_img_sz.width/20))"
         heightField.text = "\(Int(user_img_sz.height/20))"
+        masterList[currentIndex!].width = CGFloat(user_img_sz.width/20)
+        masterList[currentIndex!].height = CGFloat(user_img_sz.height/20)
         
         
         // Do any additional setup after loading the view.

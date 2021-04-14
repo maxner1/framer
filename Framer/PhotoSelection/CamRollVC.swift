@@ -34,10 +34,14 @@ class CamRollVC: UIViewController {
         
         let newSelection = Selection(img: finalPhoto!)
         if (flow != 0) {
-            arView!.masterList.append(newSelection)
-            arView!.currentIndex = arView!.masterList.endIndex - 1
-            masterList = arView!.masterList
-            currentIndex = arView!.currentIndex
+            if (flow == 1) {
+                arView!.masterList[currentIndex!].photo = finalPhoto
+            } else {
+                arView!.masterList.append(newSelection)
+                arView!.currentIndex = arView!.masterList.endIndex - 1
+                masterList = arView!.masterList
+                currentIndex = arView!.currentIndex
+            }
         }
         else {
             masterList.append(newSelection)
