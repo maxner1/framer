@@ -381,16 +381,10 @@
                                     <action selector="doneButtonTapped:" destination="4GQ-Hq-pK4" eventType="touchUpInside" id="gcV-KF-GmM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Width (inches):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqm-vK-dG5">
-                                <rect key="frame" x="102" y="589" width="200" height="24"/>
-                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height (inches):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8t9-1X-52B">
-                                <rect key="frame" x="102" y="670" width="200" height="24"/>
+                                <rect key="frame" x="99" y="670" width="200" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="QER-ij-Ys8"/>
+                                    <constraint firstAttribute="width" constant="200" id="Cx7-TR-Hap"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -444,19 +438,26 @@
                                     <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="ETa-Ki-8lv" secondAttribute="bottom" id="om6-aD-L2M"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Width (inches):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqm-vK-dG5">
+                                <rect key="frame" x="99" y="589" width="200" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="qxG-ZX-fdS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YTF-CE-zqG"/>
                         <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="trailing" secondItem="q0z-qE-vqo" secondAttribute="trailing" constant="57" id="5E0-uX-pC1"/>
-                            <constraint firstItem="eqm-vK-dG5" firstAttribute="leading" secondItem="YTF-CE-zqG" secondAttribute="leading" constant="102" id="8dZ-Xh-By2"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="trailing" secondItem="YNr-Xr-3qf" secondAttribute="trailing" constant="57" id="8pM-oV-3n7"/>
                             <constraint firstItem="8t9-1X-52B" firstAttribute="top" secondItem="eqm-vK-dG5" secondAttribute="bottom" constant="57" id="9an-qe-SEu"/>
                             <constraint firstItem="oVH-SC-vug" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" id="9fu-Pg-XME"/>
                             <constraint firstItem="YNr-Xr-3qf" firstAttribute="centerY" secondItem="eqm-vK-dG5" secondAttribute="centerY" id="Be4-xg-Bei"/>
                             <constraint firstItem="cCC-wS-Aiv" firstAttribute="top" secondItem="cd0-SP-nTj" secondAttribute="bottom" constant="70" id="CMX-Uv-PEq"/>
-                            <constraint firstItem="YNr-Xr-3qf" firstAttribute="leading" secondItem="eqm-vK-dG5" secondAttribute="trailing" constant="-3" id="GnH-aF-zIK"/>
-                            <constraint firstItem="8t9-1X-52B" firstAttribute="leading" secondItem="YTF-CE-zqG" secondAttribute="leading" constant="102" id="M4W-0R-sLk"/>
+                            <constraint firstItem="eqm-vK-dG5" firstAttribute="centerX" secondItem="8t9-1X-52B" secondAttribute="centerX" id="EEt-uX-MBU"/>
                             <constraint firstItem="cd0-SP-nTj" firstAttribute="top" secondItem="Diq-Bz-cma" secondAttribute="top" constant="20" symbolic="YES" id="Nfi-59-AuT"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="trailing" secondItem="cCC-wS-Aiv" secondAttribute="trailing" constant="87" id="QFY-cr-fB0"/>
                             <constraint firstItem="cd0-SP-nTj" firstAttribute="top" secondItem="YTF-CE-zqG" secondAttribute="top" constant="20" id="TEE-ec-jJU"/>
@@ -468,7 +469,7 @@
                             <constraint firstItem="q0z-qE-vqo" firstAttribute="top" secondItem="YNr-Xr-3qf" secondAttribute="bottom" constant="37" id="lxy-xG-fXK"/>
                             <constraint firstItem="cCC-wS-Aiv" firstAttribute="leading" secondItem="YTF-CE-zqG" secondAttribute="leading" constant="77" id="pvw-Fe-YMY"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="bottom" secondItem="8t9-1X-52B" secondAttribute="bottom" constant="114" id="tpw-7t-82p"/>
-                            <constraint firstItem="q0z-qE-vqo" firstAttribute="leading" secondItem="8t9-1X-52B" secondAttribute="trailing" constant="-3" id="xeD-bV-YzS"/>
+                            <constraint firstItem="q0z-qE-vqo" firstAttribute="leading" secondItem="8t9-1X-52B" secondAttribute="trailing" id="xeD-bV-YzS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rsq-yv-vOf"/>

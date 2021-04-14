@@ -143,10 +143,31 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         original_img = masterList[currentIndex!].fullImg
         
+        
+        
         user_img_sz.width = (masterList[currentIndex!].photo?.size.width)!
         user_img_sz.height = (tempPhotoImage?.size.height)!
         img_ratio = user_img_sz.width / user_img_sz.height
         tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
+        
+        
+        let user_width = 12 * 20
+        // Calculate new aspect ratio
+        
+        if (user_img_sz.width <= CGFloat(user_width)) {
+            // Save user input for width
+            let nr = CGFloat(user_width) / user_img_sz.width
+            user_img_sz.width = CGFloat(user_width)
+            user_img_sz.height = nr * user_img_sz.height
+        }
+        else {
+            let nr = user_img_sz.width / CGFloat(user_width)
+            user_img_sz.width = CGFloat(user_width)
+            user_img_sz.height = user_img_sz.height / nr
+        }
+        
+        tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+        photoImage.image = tempPhotoImage
         
         widthField.text = "\(Int(user_img_sz.width/20))"
         heightField.text = "\(Int(user_img_sz.height/20))"
