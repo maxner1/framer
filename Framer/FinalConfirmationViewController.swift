@@ -16,6 +16,7 @@ class FinalConfirmationViewController: UIViewController {
     //public var frameIndex: Int?
     public var currentIndex: Int?
     public var arView: ARViewController?
+    public var finalVC: FinalConfirmationViewController?
     
     
     @IBOutlet weak var frameImage: UIImageView!
@@ -27,7 +28,8 @@ class FinalConfirmationViewController: UIViewController {
         if (flow != 0) {
             print(masterList.count)
             if (flow == 1) {
-                dismiss(animated: true, completion: nil)
+                finalVC!.presentingViewController?.dismiss(animated: true, completion: nil)
+                //dismiss(animated: true, completion: nil)
             }
             else if (flow == 2) {
                 arView!.currentIndex = currentIndex
@@ -93,6 +95,15 @@ class FinalConfirmationViewController: UIViewController {
             return newImage
         }
     
+    @IBAction func backButtonClick(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
-
+        let frameViewController = storyBoard.instantiateViewController(withIdentifier: "frameViewController") as! FrameViewController
+        frameViewController.currentIndex = currentIndex
+        frameViewController.masterList = masterList
+        frameViewController.arView = arView
+        frameViewController.flow = flow
+        frameViewController.finalVC = self
+        self.show(frameViewController, sender: nil)
+    }
 }

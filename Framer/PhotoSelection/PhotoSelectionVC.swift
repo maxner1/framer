@@ -16,6 +16,7 @@ class PhotoSelectionVC: UIViewController {
     // For recognizing how many views to dismiss
     public var flow = 0
     public var arView: ARViewController?
+    public var finalVC: FinalConfirmationViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -42,8 +43,14 @@ class PhotoSelectionVC: UIViewController {
         let defaultLibraryVC = storyBoard.instantiateViewController(withIdentifier: "DefaultLibraryVC") as! DefaultLibraryVC
         //defaultLibraryVC.masterList = masterList
         if (flow != 0) {
-            defaultLibraryVC.flow = 3
+            if (flow == 1) {
+                defaultLibraryVC.flow = 1
+            }
+            else {
+                defaultLibraryVC.flow = 3
+            }
             defaultLibraryVC.arView = arView
+            defaultLibraryVC.finalVC = finalVC
         }
         self.present(defaultLibraryVC, animated: true, completion: nil)
     }
@@ -63,6 +70,7 @@ extension PhotoSelectionVC: UIImagePickerControllerDelegate, UINavigationControl
             let camRollVC = storyBoard.instantiateViewController(withIdentifier: "CamRollVC") as! CamRollVC
             camRollVC.cameraRollPhoto = img
             camRollVC.flow = flow
+            camRollVC.finalVC = finalVC
             if (flow != 0) {
                 camRollVC.arView = arView
             }

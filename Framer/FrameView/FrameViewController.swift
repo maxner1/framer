@@ -55,6 +55,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
     public var currentIndex: Int?
     public var flow = 0
     public var arView: ARViewController?
+    public var finalVC: FinalConfirmationViewController?
 
     @IBOutlet weak var collection: UICollectionView!
     
@@ -104,6 +105,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
             dest.masterList = masterList
             dest.currentIndex = currentIndex
             dest.flow = flow
+            dest.finalVC = finalVC
             if (flow != 0) {
                 dest.arView = arView
             }
@@ -116,6 +118,20 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func backButtonClick(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+        let camRollVC = storyBoard.instantiateViewController(withIdentifier: "CamRollVC") as! CamRollVC
+        camRollVC.currentIndex = currentIndex
+        camRollVC.masterList = masterList
+        camRollVC.arView = arView
+        camRollVC.flow = flow
+        camRollVC.cameraRollPhoto = masterList[currentIndex!].photo!
+        camRollVC.finalVC = finalVC
+        self.show(camRollVC, sender: nil)
     }
     
 
