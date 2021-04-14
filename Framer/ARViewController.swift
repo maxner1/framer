@@ -199,8 +199,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         print("masterList width and height:")
         print(masterList[currentIndex!].width)
         print(masterList[currentIndex!].height)
-        let width = masterList[currentIndex!].width / (scalar * CGFloat(grid.anchor.extent.x))
-        let height = masterList[currentIndex!].height / (scalar * CGFloat(grid.anchor.extent.z))
+        //let width = masterList[currentIndex!].width / (scalar * CGFloat(grid.anchor.extent.x))
+        //let height = masterList[currentIndex!].height / (scalar * CGFloat(grid.anchor.extent.z))
+        let width = masterList[currentIndex!].width / scalar
+        let height = masterList[currentIndex!].height / scalar
         print("end width and height:")
         print(width)
         print(height)
