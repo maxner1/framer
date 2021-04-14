@@ -17,7 +17,7 @@
         <!--Photo SelectionVC-->
         <scene sceneID="7tq-ga-sHo">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="E6y-Hq-sA6" customClass="PhotoSelectionVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoSelectionVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="E6y-Hq-sA6" customClass="PhotoSelectionVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKw-Hi-Fy6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -62,7 +62,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="o8J-kU-54f" kind="show" id="e6c-ig-Ndf"/>
+                                            <action selector="ChoosePhotoFromDefault:" destination="E6y-Hq-sA6" eventType="touchUpInside" id="vOv-HR-Dru"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-kK-lms">
@@ -176,9 +176,9 @@
         <!--Default LibraryVC-->
         <scene sceneID="HCg-od-sDO">
             <objects>
-                <collectionViewController id="o8J-kU-54f" customClass="DefaultLibraryVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="DefaultLibraryVC" id="o8J-kU-54f" customClass="DefaultLibraryVC" customModule="Framer" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ABl-P8-0sd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yxH-VJ-rnG">
@@ -258,9 +258,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gzf-W0-86J">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-us-xpo">
+                                <rect key="frame" x="233" y="777" width="161" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add New Image" image="plus.app.fill" catalog="system">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddImage:" destination="Rf9-gw-8JE" eventType="touchUpInside" id="tnf-X4-l3R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kEq-s5-tKz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -272,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IW7-Xc-3OP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2045" y="796"/>
+            <point key="canvasLocation" x="2044.9275362318842" y="795.53571428571422"/>
         </scene>
         <!--Frame View Controller-->
         <scene sceneID="a75-j5-cWl">
@@ -480,6 +491,10 @@
     </scenes>
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

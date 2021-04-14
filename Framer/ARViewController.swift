@@ -13,7 +13,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
     var grids = [Grid]()
-    var image: UIImage!
+    // var image: UIImage!
+    public var masterList = [Selection]()
+    public var currentIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +32,16 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        sceneView.addGestureRecognizer(gestureRecognizer)
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        singleTap.numberOfTapsRequired = 1
+        sceneView.addGestureRecognizer(singleTap)
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dblTapped))
+        doubleTap.numberOfTapsRequired = 2
+        sceneView.addGestureRecognizer(doubleTap)
+        
+        singleTap.require(toFail: doubleTap)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,38 +113,97 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         foundGrid.update(anchor: planeAnchor)
     }
     
-    @objc func tapped(gesture: UITapGestureRecognizer) {
+    @objc func dblTapped(gesture: UITapGestureRecognizer) {
+        //guard gesture.state == .began else { return }
+        // for deletes
         // Get 2D position of touch event on screen
         let touchPosition = gesture.location(in: sceneView)
         
-        // Translate those 2D points to 3D points using hitTest (existing plane)
-        let hitTestResults = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
+        // checking if hit existing selection
+        let hitTest0 = sceneView.hitTest(touchPosition, options: [SCNHitTestOption.searchMode : 1])
         
-        // Get hitTest results and ensure that the hitTest corresponds to a grid that has been placed on a wall
-        guard let hitTest = hitTestResults.first, let anchor = hitTest.anchor as? ARPlaneAnchor, let gridIndex = grids.index(where: { $0.anchor == anchor }) else {
+        //guard gesture.state == .began else { return }
+        for result in hitTest0.filter( { $0.node.name != nil }) {
+            for entry in Range(uncheckedBounds: (0, masterList.endIndex)) {
+                if result.node.name == masterList[entry].node?.name {
+                    // delete node
+                    result.node.removeFromParentNode()
+                    masterList[entry].node = nil
+                    currentIndex = entry
+                }
+            }
+        }
+    }
+    
+    @objc func tapped(gesture: UITapGestureRecognizer) {
+        //guard gesture.state == .began else { return }
+        // Get 2D position of touch event on screen
+        let touchPosition = gesture.location(in: sceneView)
+        
+        // checking if hit existing selection
+        let hitTest0 = sceneView.hitTest(touchPosition, options: [SCNHitTestOption.searchMode : 1])
+        
+        //guard gesture.state == .began else { return }
+        for result in hitTest0.filter( { $0.node.name != nil }) {
+            for entry in Range(uncheckedBounds: (0, masterList.endIndex)) {
+                if result.node.name == masterList[entry].node?.name {
+                    // go to final confirmation to edit
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let finalConfirmationVC = storyBoard.instantiateViewController(withIdentifier: "finalConfirmationVC") as! FinalConfirmationViewController
+                    finalConfirmationVC.masterList = masterList
+                    finalConfirmationVC.currentIndex = entry
+                    finalConfirmationVC.flow = 1
+                    self.present(finalConfirmationVC, animated: true, completion: nil)
+                }
+            }
+        }
+        
+        // checking if hitting on plane to place
+        // Translate those 2D points to 3D points using hitTest (existing plane)
+        guard let query = sceneView.raycastQuery(from: touchPosition,
+                                                   allowing: ARRaycastQuery.Target.existingPlaneGeometry,
+                                                   alignment: ARRaycastQuery.TargetAlignment.vertical) else {
             return
         }
         
+        guard let hitTest = sceneView.session.raycast(query).first else {
+            return
+        }
         
-            
-        addPainting(hitTest, grids[gridIndex])
+        let anchor = hitTest.anchor as? ARPlaneAnchor
+
+        // Get hitTest results and ensure that the hitTest corresponds to a grid that has been placed on a wall
+        guard let gridIndex = grids.firstIndex(where: { $0.anchor == anchor }) else {
+            return  // if not even on grid, not on painting either
+        }
+        if masterList[currentIndex!].node == nil {
+            addPainting(hitTest, grids[gridIndex])
+        }
+        
+        
+
+        
+        //guard let mlIndex = masterList.firstIndex(where: { $0.node == paintingNode }) else { //already exists
+        //    addPainting(hitTest, grids[gridIndex], paintingNode) //if it needs to be added
+        //    return
+        //}
+        
     }
     
-    func addPainting(_ hitResult: ARHitTestResult, _ grid: Grid) {
-        // 1.
-        let planeGeometry = SCNPlane(width: 0.2, height: 0.35)
+    func addPainting(_ hitResult: ARRaycastResult, _ grid: Grid) {
+        let planeGeometry = SCNPlane(width: 0.2, height: 0.35) // change to dims??
         let material = SCNMaterial()
-        material.diffuse.contents = image
+        material.diffuse.contents = masterList[currentIndex!].fullImg
         planeGeometry.materials = [material]
+        let node = SCNNode(geometry: planeGeometry)
+        node.transform = SCNMatrix4(hitResult.anchor!.transform)
+        node.eulerAngles = SCNVector3(node.eulerAngles.x + (-Float.pi / 2), node.eulerAngles.y, node.eulerAngles.z)
+        node.position = SCNVector3(hitResult.worldTransform.columns.3.x, hitResult.worldTransform.columns.3.y, hitResult.worldTransform.columns.3.z)
+        node.name = String(currentIndex!)
         
-        // 2.
-        let paintingNode = SCNNode(geometry: planeGeometry)
-        paintingNode.transform = SCNMatrix4(hitResult.anchor!.transform)
-        paintingNode.eulerAngles = SCNVector3(paintingNode.eulerAngles.x + (-Float.pi / 2), paintingNode.eulerAngles.y, paintingNode.eulerAngles.z)
-        paintingNode.position = SCNVector3(hitResult.worldTransform.columns.3.x, hitResult.worldTransform.columns.3.y, hitResult.worldTransform.columns.3.z)
-        
-        sceneView.scene.rootNode.addChildNode(paintingNode)
+        sceneView.scene.rootNode.addChildNode(node)
         grid.removeFromParentNode()
+        masterList[currentIndex!].node = node
     }
     
     func runSesson() {
@@ -144,7 +213,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         configuration.isLightEstimationEnabled = true
         sceneView.session.run(configuration)
     }
-    
-
+        
+    @IBAction func AddImage(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let photoSelectionVC = storyBoard.instantiateViewController(withIdentifier: "PhotoSelectionVC") as! PhotoSelectionVC
+        photoSelectionVC.flow = 2
+        photoSelectionVC.arView = self
+        self.present(photoSelectionVC, animated: true, completion: nil)
+    }
 }
 

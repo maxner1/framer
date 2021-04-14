@@ -7,19 +7,17 @@
 
 import UIKit
 
-class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
+class FinalConfirmationViewController: UIViewController {
+    public var flow = 0
+    //public var tempFrameImage: UIImage?
+    //public var tempPhotoImage: UIImage?
+    //public var inset: CGFloat?
+    public var masterList = [Selection]()
+    //public var frameIndex: Int?
+    public var currentIndex: Int?
+    public var arView: ARViewController?
     
-    public var tempFrameImage: UIImage?
-    public var tempPhotoImage: UIImage?
-    public var inset: CGFloat?
-    public var user_img_sz = CGSize.init()
-    public var user_frame_sz = CGSize.init()
-    public var img_ratio: CGFloat?
-    public var original_img : UIImage?
-    public var original_frame : UIImage?
-    public var tryPhoto : UIImage?
     
-
     @IBOutlet weak var frameImage: UIImageView!
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
@@ -87,11 +85,33 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func doneButtonTapped(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        // Return to running AR Scene
+        if (flow != 0) {
+            print(masterList.count)
+            if (flow == 1) {
+                dismiss(animated: true, completion: nil)
+            }
+            else if (flow == 2) {
+                arView!.currentIndex = currentIndex
+                arView!.masterList = masterList
+                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                
+            }
+            else if (flow == 3) {
+                arView!.currentIndex = currentIndex
+                arView!.masterList = masterList
+                self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+        }
+        else { // Instantiate new AR View Controller
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
-        let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
-        arViewController.image = combineImages()
-        self.show(arViewController, sender: nil)
+            let arViewController = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
+            //arViewController.image = combineImages()
+            arViewController.currentIndex = currentIndex
+            arViewController.masterList = masterList
+            self.show(arViewController, sender: nil)
+        }
     }
     
     func text_ht_return(textField: UITextField) -> Bool {
@@ -103,8 +123,8 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //let H = (tempPhotoImage?.size.height)! + (1111111111111*((tempFrameImage?.capInsets.top)!))
-        //let W = (tempPhotoImage?.size.width)! + (11*((tempFrameImage?.capInsets.left)!))
+        let H = (masterList[currentIndex!].photo!.size.height) + (2*((masterList[currentIndex!].frame!.capInsets.top)))
+        let W = (masterList[currentIndex!].photo!.size.width) + (2*((masterList[currentIndex!].frame!.capInsets.left)))
         
         //photoImage.heightAnchor.constraint(equalToConstant: H).isActive = true
         //photoImage.widthAnchor.constraint(equalToConstant: W).isActive = true
@@ -113,18 +133,13 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         img_ratio = user_img_sz.width / user_img_sz.height
         tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
         
-        user_frame_sz = CGSize(width: (tempFrameImage?.size.width)!, height: (tempFrameImage?.size.height)!)
-        tempFrameImage = resizeImage(image: tempFrameImage!, targetSize: user_frame_sz)
-        
-        //frameImage.image = tempFrameImage
-        //frameImage.image = tryPhoto
-        original_img = tryPhoto
-        original_frame = tempFrameImage
-        photoImage.image = tryPhoto
-        //photoImage.image = tempPhotoImage
-        
-        frameImage.layer.zPosition = -1
+
+        frameImage.image = masterList[currentIndex!].frame
+        photoImage.image = masterList[currentIndex!].photo
+        frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
+        
+        masterList[currentIndex!].fullImg = combineImages()
         
         
         // Do any additional setup after loading the view.
@@ -182,20 +197,20 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func combineImages()-> UIImage {
+    func combineImages()-> UIImage {  // could be rewritten to add dims directly to fullImg in Selection
             let bottomImage = frameImage.image
-            var topImage = photoImage.image
-            var size = CGSize(width: topImage!.size.width + inset! * 2,
-                              height: topImage!.size.height + inset! * 2)
+            let topImage = photoImage.image
+        let size = CGSize(width: topImage!.size.width + masterList[currentIndex!].inset! * 2,
+                          height: topImage!.size.height + masterList[currentIndex!].inset! * 2)
             UIGraphicsBeginImageContext(size)
             let areaSizeFrame = CGRect(x: 0, y: 0, width: size.width,
                                        height: size.height)
             bottomImage!.draw(in: areaSizeFrame)
-            let areaSizePhoto = CGRect(x: inset!, y: inset!,
-                                       width: size.width - inset! * 2,
-                                       height: size.height - inset! * 2)
+            let areaSizePhoto = CGRect(x: masterList[currentIndex!].inset!, y: masterList[currentIndex!].inset!,
+                                       width: size.width - masterList[currentIndex!].inset! * 2,
+                                       height: size.height - masterList[currentIndex!].inset! * 2)
             topImage!.draw(in: areaSizePhoto, blendMode: .normal, alpha: 1.0)
-            var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             //frameImage.image = nil
             //photoImage.image = newImage
@@ -205,7 +220,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     
 
 
-}
+
 
 extension UITextField {
     func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {

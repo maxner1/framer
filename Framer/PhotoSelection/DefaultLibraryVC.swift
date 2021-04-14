@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class DefaultLibraryVC: UICollectionViewController {
+    public var flow = 0
+    public var arView: ARViewController?
     private var images : [DefaultPhoto] = [ DefaultPhoto(image: "image1"),
                                         DefaultPhoto(image: "image2"),
                                         DefaultPhoto(image: "image3"),
@@ -33,7 +35,6 @@ class DefaultLibraryVC: UICollectionViewController {
                                         DefaultPhoto(image: "image22"),
                                         DefaultPhoto(image: "image23"),
                                         DefaultPhoto(image: "image24")]
-    
     override func viewDidLoad() {
         super.viewDidLoad();
     }
@@ -59,6 +60,10 @@ class DefaultLibraryVC: UICollectionViewController {
             if let indexPaths = collectionView.indexPathsForSelectedItems{
                 let destinationController = segue.destination as! CamRollVC
                 destinationController.defaultPhoto = images[indexPaths[0].row]
+                destinationController.flow = flow
+                if (flow != 0) {
+                    destinationController.arView = arView
+                }
                 collectionView.deselectItem(at: indexPaths[0], animated: false)
             }
         }
