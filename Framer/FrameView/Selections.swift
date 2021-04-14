@@ -10,17 +10,20 @@ import UIKit
 import SceneKit
 import ARKit
 
-class Selection : SCNNode {
+class Selection {
     var photo: UIImage?
     var photoW: CGFloat = 0
     var photoH: CGFloat = 0
-    var frameIndex: Int?
+    //var frameIndex: Int?
+    var frame: UIImage?
+    var inset: CGFloat?
     var frameW: CGFloat = 0
     var frameH: CGFloat = 0
     var fullImg: UIImage?
     
     var anchor: ARAnchor?  // might not use
     var hitTest: ARRaycastResult?
+    var node: SCNNode?
     var planeGeometry: SCNPlane! // might not use
     
     //init(anchor: ARPlaneAnchor) {
@@ -30,7 +33,6 @@ class Selection : SCNNode {
     
     init(img: UIImage) {
         self.photo = img
-        super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {

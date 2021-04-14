@@ -9,9 +9,9 @@ import UIKit
 
 class FinalConfirmationViewController: UIViewController {
     public var flow = 0
-    public var tempFrameImage: UIImage?
-    public var tempPhotoImage: UIImage?
-    public var inset: CGFloat?
+    //public var tempFrameImage: UIImage?
+    //public var tempPhotoImage: UIImage?
+    //public var inset: CGFloat?
     public var masterList = [Selection]()
     //public var frameIndex: Int?
     public var currentIndex: Int?
@@ -25,6 +25,7 @@ class FinalConfirmationViewController: UIViewController {
     @IBAction func doneButtonTapped(_ sender: Any) {
         // Return to running AR Scene
         if (flow != 0) {
+            print(masterList.count)
             if (flow == 1) {
                 dismiss(animated: true, completion: nil)
             }
@@ -53,17 +54,15 @@ class FinalConfirmationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // print(tempFrameImage)
-        // print(tempPhotoImage)
-        
-        let H = (tempPhotoImage?.size.height)! + (2*((tempFrameImage?.capInsets.top)!))
-        let W = (tempPhotoImage?.size.width)! + (2*((tempFrameImage?.capInsets.left)!))
+
+        let H = (masterList[currentIndex!].photo!.size.height) + (2*((masterList[currentIndex!].frame!.capInsets.top)))
+        let W = (masterList[currentIndex!].photo!.size.width) + (2*((masterList[currentIndex!].frame!.capInsets.left)))
         
         frameImage.heightAnchor.constraint(equalToConstant: H).isActive = true
         frameImage.widthAnchor.constraint(equalToConstant: W).isActive = true
         
-        frameImage.image = tempFrameImage
-        photoImage.image = tempPhotoImage
+        frameImage.image = masterList[currentIndex!].frame
+        photoImage.image = masterList[currentIndex!].photo
         frameImage.layer.zPosition = 1
         photoImage.layer.zPosition = 2
         
@@ -76,15 +75,15 @@ class FinalConfirmationViewController: UIViewController {
     func combineImages()-> UIImage {  // could be rewritten to add dims directly to fullImg in Selection
             let bottomImage = frameImage.image
             let topImage = photoImage.image
-            let size = CGSize(width: topImage!.size.width + inset! * 2,
-                              height: topImage!.size.height + inset! * 2)
+        let size = CGSize(width: topImage!.size.width + masterList[currentIndex!].inset! * 2,
+                          height: topImage!.size.height + masterList[currentIndex!].inset! * 2)
             UIGraphicsBeginImageContext(size)
             let areaSizeFrame = CGRect(x: 0, y: 0, width: size.width,
                                        height: size.height)
             bottomImage!.draw(in: areaSizeFrame)
-            let areaSizePhoto = CGRect(x: inset!, y: inset!,
-                                       width: size.width - inset! * 2,
-                                       height: size.height - inset! * 2)
+            let areaSizePhoto = CGRect(x: masterList[currentIndex!].inset!, y: masterList[currentIndex!].inset!,
+                                       width: size.width - masterList[currentIndex!].inset! * 2,
+                                       height: size.height - masterList[currentIndex!].inset! * 2)
             topImage!.draw(in: areaSizePhoto, blendMode: .normal, alpha: 1.0)
             let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()

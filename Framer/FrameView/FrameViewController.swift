@@ -95,10 +95,12 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
                                      right: insets[chosenFrameIndex])
             let finalF = chosenFrame.resizableImage(withCapInsets: inset, resizingMode: UIImage.ResizingMode.stretch)
             let finalImg = selectedPhoto?.scaleI(inset: insets[chosenFrameIndex])
-            dest.tempFrameImage = finalF
-            dest.tempPhotoImage = finalImg
-            dest.inset = insets[chosenFrameIndex]
-            masterList[currentIndex!].frameIndex = chosenFrameIndex
+            masterList[currentIndex!].photo = finalImg
+            masterList[currentIndex!].frame = finalF
+            //dest.tempFrameImage = finalF
+            //dest.tempPhotoImage = finalImg
+            //masterList[currentIndex!].frameIndex = chosenFrameIndex
+            masterList[currentIndex!].inset = insets[chosenFrameIndex]
             dest.masterList = masterList
             dest.currentIndex = currentIndex
             dest.flow = flow
