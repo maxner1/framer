@@ -12,13 +12,11 @@ import ARKit
 
 class Selection {
     var photo: UIImage?
-    var photoW: CGFloat = 0
-    var photoH: CGFloat = 0
     //var frameIndex: Int?
     var frame: UIImage?
     var inset: CGFloat?
-    var frameW: CGFloat = 0
-    var frameH: CGFloat = 0
+    var width: CGFloat = 0
+    var height: CGFloat = 0
     var fullImg: UIImage?
     
     var anchor: ARAnchor?  // might not use

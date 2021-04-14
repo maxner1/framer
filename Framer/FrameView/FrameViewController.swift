@@ -48,7 +48,9 @@ extension UIImage {
 class FrameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     let frames : [UIImage] = [#imageLiteral(resourceName: "Frame0"), #imageLiteral(resourceName: "Frame1"), #imageLiteral(resourceName: "Frame2"), #imageLiteral(resourceName: "Frame3"), #imageLiteral(resourceName: "Frame4"), #imageLiteral(resourceName: "Frame5"), #imageLiteral(resourceName: "Frame6"), #imageLiteral(resourceName: "Frame7"), #imageLiteral(resourceName: "Frame8"), #imageLiteral(resourceName: "Frame9"), #imageLiteral(resourceName: "Frame10"), #imageLiteral(resourceName: "Frame11"), #imageLiteral(resourceName: "Frame12")]
-    let insets : [CGFloat] = [46, 80, 70, 40, 60, 42, 47, 70, 40, 25, 70, 10, 44]
+    let insets : [CGFloat] = [46, 80, 70, 40, 60, 42, 47, 70, 40, 25, 100, 10, 44]
+    //    let insets : [CGFloat] = [46, 80, 70, 40, 60, 42, 47, 70, 40, 25, 70, 10, 44]
+
     private var chosenFrameIndex = 0
     public var selectedPhoto : UIImage?
     public var masterList = [Selection]()
@@ -94,8 +96,9 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
                                      left: insets[chosenFrameIndex],
                                      bottom: insets[chosenFrameIndex],
                                      right: insets[chosenFrameIndex])
-            let finalF = chosenFrame.resizableImage(withCapInsets: inset, resizingMode: UIImage.ResizingMode.stretch)
+            let finalF = chosenFrame.resizableImage(withCapInsets: inset, resizingMode: UIImage.ResizingMode.tile)
             let finalImg = selectedPhoto?.scaleI(inset: insets[chosenFrameIndex])
+
             masterList[currentIndex!].photo = finalImg
             masterList[currentIndex!].frame = finalF
             //dest.tempFrameImage = finalF
@@ -110,6 +113,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
                 dest.arView = arView
             }
             // pass in frame w/h somewhere in here
+
         }
     }
     

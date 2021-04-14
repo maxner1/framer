@@ -15,22 +15,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Home_img1" translatesAutoresizingMaskIntoConstraints="NO" id="IbE-2W-yKu">
-                                <rect key="frame" x="87" y="146" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" misplaced="YES" image="Home_img1" translatesAutoresizingMaskIntoConstraints="NO" id="IbE-2W-yKu">
+                                <rect key="frame" x="87" y="143" width="240" height="128"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home_img2" translatesAutoresizingMaskIntoConstraints="NO" id="VNn-d7-2g4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="home_img2" translatesAutoresizingMaskIntoConstraints="NO" id="VNn-d7-2g4">
                                 <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="d4G-QO-omk">
-                                <rect key="frame" x="197" y="806" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="d4G-QO-omk">
+                                <rect key="frame" x="197" y="711" width="20" height="20"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="VNn-d7-2g4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="B1U-fn-FSc"/>
+                            <constraint firstItem="IbE-2W-yKu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Q3Z-8h-hDE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="d4G-QO-omk" secondAttribute="bottom" constant="131" id="huf-mS-iRR"/>
+                            <constraint firstItem="d4G-QO-omk" firstAttribute="top" secondItem="VNn-d7-2g4" secondAttribute="bottom" constant="199" id="iz9-FR-BAA"/>
+                            <constraint firstItem="VNn-d7-2g4" firstAttribute="top" secondItem="IbE-2W-yKu" secondAttribute="bottom" constant="113" id="qiS-Oj-hEP"/>
+                            <constraint firstItem="d4G-QO-omk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rSt-Mg-Nhw"/>
+                            <constraint firstItem="IbE-2W-yKu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="99" id="wM4-H7-jei"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

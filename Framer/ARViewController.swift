@@ -192,7 +192,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addPainting(_ hitResult: ARRaycastResult, _ grid: Grid) {
-        let planeGeometry = SCNPlane(width: 0.2, height: 0.35) // change to dims??
+        let scalar = CGFloat(39.37)
+        print("extents:")
+        print(grid.anchor.extent.x)
+        print(grid.anchor.extent.z)
+        print("masterList width and height:")
+        print(masterList[currentIndex!].width)
+        print(masterList[currentIndex!].height)
+        let width = masterList[currentIndex!].width / (scalar * CGFloat(grid.anchor.extent.x))
+        let height = masterList[currentIndex!].height / (scalar * CGFloat(grid.anchor.extent.z))
+        print("end width and height:")
+        print(width)
+        print(height)
+        let planeGeometry = SCNPlane(width: width, height: height) // change to dims??
         let material = SCNMaterial()
         material.diffuse.contents = masterList[currentIndex!].fullImg
         planeGeometry.materials = [material]
