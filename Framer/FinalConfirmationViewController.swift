@@ -36,22 +36,23 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         let user_width = (Int(widthField.text!) ?? 1) * 20
         print("Result: ", result)
         // Calculate new aspect ratio
-        if (user_img_sz.width <= CGFloat(user_width)) {
-            // Save user input for width
-            let nr = CGFloat(user_width) / user_img_sz.width
-            user_img_sz.width = CGFloat(user_width)
-            user_img_sz.height = nr * user_img_sz.height
-        }
-        else {
-            let nr = user_img_sz.width / CGFloat(user_width)
-            user_img_sz.width = CGFloat(user_width)
-            user_img_sz.height = user_img_sz.height / nr
-        }
         
-        tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-        //tempFrameImage = resizeImage(image: original_frame!, targetSize: user_frame_sz)
-        photoImage.image = tempPhotoImage
-        //frameImage.image = tempFrameImage
+        if (user_width <= 12 * 20) {
+            if (user_img_sz.width <= CGFloat(user_width)) {
+                // Save user input for width
+                let nr = CGFloat(user_width) / user_img_sz.width
+                user_img_sz.width = CGFloat(user_width)
+                user_img_sz.height = nr * user_img_sz.height
+            }
+            else {
+                let nr = user_img_sz.width / CGFloat(user_width)
+                user_img_sz.width = CGFloat(user_width)
+                user_img_sz.height = user_img_sz.height / nr
+            }
+            
+            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+            photoImage.image = tempPhotoImage
+        }
     }
     
     @IBOutlet weak var heightField: UITextField! {
@@ -66,20 +67,22 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         let user_ht = (Int(heightField.text!) ?? 1) * 20
         print("Result: ", result)
         // Calculate new aspect ratio
-        if (user_img_sz.height <= CGFloat(user_ht)) {
-            // Save user input for width
-            let nr = CGFloat(user_ht) / user_img_sz.height
-            user_img_sz.height = CGFloat(user_ht)
-            user_img_sz.width = nr * user_img_sz.width
+        if (user_ht <= 12 * 20) {
+            if (user_img_sz.height <= CGFloat(user_ht)) {
+                // Save user input for width
+                let nr = CGFloat(user_ht) / user_img_sz.height
+                user_img_sz.height = CGFloat(user_ht)
+                user_img_sz.width = nr * user_img_sz.width
+            }
+            else {
+                let nr = user_img_sz.height / CGFloat(user_ht)
+                user_img_sz.height = CGFloat(user_ht)
+                user_img_sz.width = user_img_sz.width / nr
+            }
+            
+            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+            photoImage.image = tempPhotoImage
         }
-        else {
-            let nr = user_img_sz.height / CGFloat(user_ht)
-            user_img_sz.height = CGFloat(user_ht)
-            user_img_sz.width = user_img_sz.width / nr
-        }
-        
-        tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-        photoImage.image = tempPhotoImage
     }
     
     var saved_height: String!
