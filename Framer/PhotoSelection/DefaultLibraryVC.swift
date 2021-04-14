@@ -11,6 +11,7 @@ import UIKit
 class DefaultLibraryVC: UICollectionViewController {
     public var flow = 0
     public var arView: ARViewController?
+    public var finalVC: FinalConfirmationViewController?
     private var images : [DefaultPhoto] = [ DefaultPhoto(image: "image1"),
                                         DefaultPhoto(image: "image2"),
                                         DefaultPhoto(image: "image3"),
@@ -63,6 +64,7 @@ class DefaultLibraryVC: UICollectionViewController {
                 destinationController.flow = flow
                 if (flow != 0) {
                     destinationController.arView = arView
+                    destinationController.finalVC = finalVC
                 }
                 collectionView.deselectItem(at: indexPaths[0], animated: false)
             }

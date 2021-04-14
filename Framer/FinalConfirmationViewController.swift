@@ -19,6 +19,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     //public var frameIndex: Int?
     public var currentIndex: Int?
     public var arView: ARViewController?
+    public var finalVC: FinalConfirmationViewController?
     
     
     @IBOutlet weak var photoImage: UIImageView!
@@ -94,7 +95,8 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         if (flow != 0) {
             print(masterList.count)
             if (flow == 1) {
-                dismiss(animated: true, completion: nil)
+                finalVC!.presentingViewController?.dismiss(animated: true, completion: nil)
+                //dismiss(animated: true, completion: nil)
             }
             else if (flow == 2) {
                 arView!.currentIndex = currentIndex
@@ -249,9 +251,18 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             return newImage
         }
     
+    @IBAction func backButtonClick(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+        let frameViewController = storyBoard.instantiateViewController(withIdentifier: "frameViewController") as! FrameViewController
+        frameViewController.currentIndex = currentIndex
+        frameViewController.masterList = masterList
+        frameViewController.arView = arView
+        frameViewController.flow = flow
+        frameViewController.finalVC = self
+        self.show(frameViewController, sender: nil)
+    }
 }
-
-
 
 extension UITextField {
     func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {

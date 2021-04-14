@@ -152,6 +152,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     let finalConfirmationVC = storyBoard.instantiateViewController(withIdentifier: "finalConfirmationVC") as! FinalConfirmationViewController
                     finalConfirmationVC.masterList = masterList
                     finalConfirmationVC.currentIndex = entry
+                    finalConfirmationVC.arView = self
                     finalConfirmationVC.flow = 1
                     self.present(finalConfirmationVC, animated: true, completion: nil)
                 }

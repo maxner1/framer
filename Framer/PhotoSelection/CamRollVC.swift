@@ -8,14 +8,16 @@ class CamRollVC: UIViewController {
     
     public var defaultPhoto : DefaultPhoto? = nil
     public var cameraRollPhoto : UIImage?
-    private var finalPhoto : UIImage?
+    public var finalPhoto : UIImage?
     public var masterList = [Selection]()
     public var currentIndex: Int?
     public var flow = 0
     public var arView: ARViewController?
+    public var finalVC: FinalConfirmationViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if (defaultPhoto != nil) {
             imageView.image = UIImage(named: defaultPhoto?.image ?? "")
         }
@@ -23,13 +25,13 @@ class CamRollVC: UIViewController {
           imageView.image = cameraRollPhoto
         }
         finalPhoto = imageView.image
-        
         // add/update masterList entry, resizing w/h to be added
         /*
         if currentIndex != nil {
             masterList[currentIndex!].photo = finalPhoto
         }
         */
+        
         let newSelection = Selection(img: finalPhoto!)
         if (flow != 0) {
             arView!.masterList.append(newSelection)
@@ -49,10 +51,20 @@ class CamRollVC: UIViewController {
             dest.masterList = masterList
             dest.currentIndex = currentIndex
             dest.flow = flow
+            dest.finalVC = finalVC
             if (flow != 0) {
                 dest.arView = arView
             }
         }
+    }
+    @IBAction func backButtonClick(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+        let photoSelectionVC = storyBoard.instantiateViewController(withIdentifier: "PhotoSelectionVC") as! PhotoSelectionVC
+        photoSelectionVC.flow = flow
+        photoSelectionVC.arView = arView
+        photoSelectionVC.finalVC = finalVC
+        self.show(photoSelectionVC, sender: nil)
     }
 }
 
