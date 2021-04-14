@@ -13,8 +13,11 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     public var tempPhotoImage: UIImage?
     public var inset: CGFloat?
     public var user_img_sz = CGSize.init()
+    public var user_frame_sz = CGSize.init()
     public var img_ratio: CGFloat?
     public var original_img : UIImage?
+    public var original_frame : UIImage?
+    public var tryPhoto : UIImage?
     
 
     @IBOutlet weak var frameImage: UIImageView!
@@ -44,8 +47,11 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             user_img_sz.width = CGFloat(user_width)
             user_img_sz.height = user_img_sz.height / nr
         }
+        
         tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+        //tempFrameImage = resizeImage(image: original_frame!, targetSize: user_frame_sz)
         photoImage.image = tempPhotoImage
+        //frameImage.image = tempFrameImage
     }
     
     @IBOutlet weak var heightField: UITextField! {
@@ -71,6 +77,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             user_img_sz.height = CGFloat(user_ht)
             user_img_sz.width = user_img_sz.width / nr
         }
+        
         tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
         photoImage.image = tempPhotoImage
     }
@@ -95,8 +102,6 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // print(tempFrameImage)
-        // print(tempPhotoImage)
         
         //let H = (tempPhotoImage?.size.height)! + (1111111111111*((tempFrameImage?.capInsets.top)!))
         //let W = (tempPhotoImage?.size.width)! + (11*((tempFrameImage?.capInsets.left)!))
@@ -108,11 +113,17 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         img_ratio = user_img_sz.width / user_img_sz.height
         tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
         
-        frameImage.image = tempFrameImage
-        original_img = tempPhotoImage
-        photoImage.image = tempPhotoImage
+        user_frame_sz = CGSize(width: (tempFrameImage?.size.width)!, height: (tempFrameImage?.size.height)!)
+        tempFrameImage = resizeImage(image: tempFrameImage!, targetSize: user_frame_sz)
         
-        frameImage.layer.zPosition = 1
+        //frameImage.image = tempFrameImage
+        //frameImage.image = tryPhoto
+        original_img = tryPhoto
+        original_frame = tempFrameImage
+        photoImage.image = tryPhoto
+        //photoImage.image = tempPhotoImage
+        
+        frameImage.layer.zPosition = -1
         photoImage.layer.zPosition = 2
         
         
