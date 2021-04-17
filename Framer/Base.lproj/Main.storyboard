@@ -304,7 +304,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kWT-1D-L6F">
-                                <rect key="frame" x="0.0" y="154" width="414" height="688"/>
+                                <rect key="frame" x="0.0" y="155.5" width="414" height="686.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ShE-u3-Zea">
                                     <size key="itemSize" width="150" height="200"/>
@@ -345,7 +345,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frames" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldY-2t-8RM">
-                                <rect key="frame" x="147" y="48" width="120.5" height="42"/>
+                                <rect key="frame" x="149.5" y="48" width="115.5" height="43.5"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -422,7 +422,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q0z-qE-vqo">
-                                <rect key="frame" x="299" y="655" width="58" height="34"/>
+                                <rect key="frame" x="299" y="665" width="58" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -493,10 +493,10 @@
                             <constraint firstItem="cd0-SP-nTj" firstAttribute="top" secondItem="YTF-CE-zqG" secondAttribute="top" constant="20" id="TEE-ec-jJU"/>
                             <constraint firstItem="cCC-wS-Aiv" firstAttribute="centerX" secondItem="YTF-CE-zqG" secondAttribute="centerX" constant="-5" id="YkK-u4-3cf"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="bottom" secondItem="oVH-SC-vug" secondAttribute="bottom" id="aP4-pn-5yK"/>
+                            <constraint firstItem="q0z-qE-vqo" firstAttribute="centerY" secondItem="8t9-1X-52B" secondAttribute="centerY" id="blI-vh-39r"/>
                             <constraint firstItem="eqm-vK-dG5" firstAttribute="top" secondItem="cCC-wS-Aiv" secondAttribute="bottom" constant="439" id="hVu-gl-hza"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="trailing" secondItem="cd0-SP-nTj" secondAttribute="trailing" constant="20" id="kco-uF-sLL"/>
                             <constraint firstItem="cd0-SP-nTj" firstAttribute="leading" secondItem="YTF-CE-zqG" secondAttribute="leading" constant="20" id="kvV-Kh-6In"/>
-                            <constraint firstItem="q0z-qE-vqo" firstAttribute="top" secondItem="YNr-Xr-3qf" secondAttribute="bottom" constant="37" id="lxy-xG-fXK"/>
                             <constraint firstItem="cCC-wS-Aiv" firstAttribute="leading" secondItem="YTF-CE-zqG" secondAttribute="leading" constant="77" id="pvw-Fe-YMY"/>
                             <constraint firstItem="YTF-CE-zqG" firstAttribute="bottom" secondItem="8t9-1X-52B" secondAttribute="bottom" constant="114" id="tpw-7t-82p"/>
                             <constraint firstItem="q0z-qE-vqo" firstAttribute="leading" secondItem="8t9-1X-52B" secondAttribute="trailing" id="xeD-bV-YzS"/>

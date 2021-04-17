@@ -54,6 +54,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             
             tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
             photoImage.image = tempPhotoImage
+            heightField.text = "\(Int(user_img_sz.height)/20)"
         }
     }
     
@@ -84,6 +85,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             
             tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
             photoImage.image = tempPhotoImage
+            widthField.text = "\(Int(user_img_sz.width)/20)"
         }
     }
     
