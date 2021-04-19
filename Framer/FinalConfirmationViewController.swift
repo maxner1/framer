@@ -13,7 +13,8 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     //public var inset: CGFloat?
     public var masterList = [Selection]()
     public var user_img_sz = CGSize.init()
-    public var img_ratio: CGFloat?
+    public var img_ratio_w: CGFloat?
+    public var img_ratio_h: CGFloat?
     public var original_img : UIImage?
     public var frameImage: UIImage?
     //public var frameIndex: Int?
@@ -151,32 +152,33 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         original_img = masterList[currentIndex!].fullImg
         
-        
-        
-        user_img_sz.width = (tempPhotoImage?.size.height)!
+        user_img_sz.width = (tempPhotoImage?.size.width)!
         user_img_sz.height = (tempPhotoImage?.size.height)!
-        img_ratio = user_img_sz.width / user_img_sz.height
-        tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
+        img_ratio_w = user_img_sz.height / user_img_sz.width
+        img_ratio_h = user_img_sz.width / user_img_sz.height
+        //tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
         
-        
-        let user_width = 12 * 20
-        // Calculate new aspect ratio
-        
-        
-        if (user_img_sz.width <= CGFloat(user_width)) {
-            // Save user input for width
-            let nr = CGFloat(user_width) / user_img_sz.width
+        if (user_img_sz.width > user_img_sz.height) {
+            let user_width = 12 * 20
+            // Calculate new aspect ratio
+            
+            
             user_img_sz.width = CGFloat(user_width)
-            user_img_sz.height = nr * user_img_sz.height
+            user_img_sz.height = img_ratio_w! * user_img_sz.width
+            
+            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+            photoImage.image = tempPhotoImage
+        } else {
+            let user_height = 12 * 20
+            // Calculate new aspect ratio
+            
+            
+            user_img_sz.height = CGFloat(user_height)
+            user_img_sz.width = img_ratio_h! * user_img_sz.height
+            
+            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+            photoImage.image = tempPhotoImage
         }
-        else {
-            let nr = user_img_sz.width / CGFloat(user_width)
-            user_img_sz.width = CGFloat(user_width)
-            user_img_sz.height = user_img_sz.height / nr
-        }
-        
-        tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-        photoImage.image = tempPhotoImage
         
         widthField.text = "\(Int(user_img_sz.width/20))"
         heightField.text = "\(Int(user_img_sz.height/20))"
