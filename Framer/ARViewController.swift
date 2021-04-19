@@ -129,6 +129,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     // delete node
                     result.node.removeFromParentNode()
                     masterList[entry].node = nil
+                    masterList[entry].hitTest = nil
                     currentIndex = entry
                 }
             }

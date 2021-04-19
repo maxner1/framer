@@ -55,20 +55,9 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         }
         
         heightField.text = "\(Int(user_img_sz.height)/20)"
+        masterList[currentIndex!].height = CGFloat(Int(user_img_sz.height)/20)
         
-        if (img_ratio_w! <= 1) {
-            if (user_width <= 12 * 20) {
-                
-                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-                photoImage.image = tempPhotoImage
-            }
-        } else {
-            if (img_ratio_w! * CGFloat(user_width) <= 12 * 20) {
-                
-                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-                photoImage.image = tempPhotoImage
-            }
-        }
+        photoImage.image = displayImage()
     }
     
     @IBOutlet weak var heightField: UITextField! {
@@ -83,6 +72,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         let user_ht = (Int(heightField.text!) ?? 1) * 20
         print("Result: ", result)
         // Calculate new aspect ratio
+        masterList[currentIndex!].height = CGFloat(Int(heightField.text!)!)
         
         if (user_img_sz.height <= CGFloat(user_ht)) {
             // Save user input for width
@@ -96,21 +86,10 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             user_img_sz.width = user_img_sz.width / nr
         }
         
-        if (img_ratio_h! <= 1) {
-            if (user_ht <= 12 * 20) {
-                
-                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-                photoImage.image = tempPhotoImage
-            }
-        } else {
-            if (img_ratio_h! * CGFloat(user_ht) <= 12 * 20) {
-                
-                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-                photoImage.image = tempPhotoImage
-            }
-        }
-        
         widthField.text = "\(Int(user_img_sz.width)/20)"
+        masterList[currentIndex!].width = CGFloat(Int(user_img_sz.width)/20)
+        
+        photoImage.image = displayImage()
     }
     
     var saved_height: String!
@@ -156,10 +135,10 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //print("viewdidload")
         //let H = (masterList[currentIndex!].photo!.size.height) + (2*((masterList[currentIndex!].frame!.capInsets.top)))
         //let W = (masterList[currentIndex!].photo!.size.width) + (2*((masterList[currentIndex!].frame!.capInsets.left)))
-        print(masterList.count)
+        //print(masterList.count)
         frameImage = masterList[currentIndex!].frame
         photoImage.image = masterList[currentIndex!].photo
         photoImage.layer.zPosition = 2
@@ -172,32 +151,36 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         original_img = masterList[currentIndex!].fullImg
         
-        user_img_sz.width = (tempPhotoImage?.size.width)!
-        user_img_sz.height = (tempPhotoImage?.size.height)!
-        img_ratio_w = user_img_sz.height / user_img_sz.width
-        img_ratio_h = user_img_sz.width / user_img_sz.height
-        //tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
-        
-        if (user_img_sz.width > user_img_sz.height) {
-            let user_width = 12 * 20
-            // Calculate new aspect ratio
-            
-            
-            user_img_sz.width = CGFloat(user_width)
-            user_img_sz.height = img_ratio_w! * user_img_sz.width
-            
-            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-            photoImage.image = tempPhotoImage
+        if ((masterList[currentIndex!].width != 0) && (masterList[currentIndex!].height != 0)) {
+            user_img_sz.width = masterList[currentIndex!].width * 20
+            user_img_sz.height = masterList[currentIndex!].height * 20
+            photoImage.image = displayImage()
         } else {
-            let user_height = 12 * 20
-            // Calculate new aspect ratio
+            user_img_sz.width = (tempPhotoImage?.size.width)!
+            user_img_sz.height = (tempPhotoImage?.size.height)!
+            img_ratio_w = user_img_sz.height / user_img_sz.width
+            img_ratio_h = user_img_sz.width / user_img_sz.height
+            //tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
             
-            
-            user_img_sz.height = CGFloat(user_height)
-            user_img_sz.width = img_ratio_h! * user_img_sz.height
-            
-            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-            photoImage.image = tempPhotoImage
+            if (user_img_sz.width > user_img_sz.height) {
+                let user_width = 8 * 20
+                // Calculate new aspect ratio
+                
+                
+                user_img_sz.width = CGFloat(user_width)
+                user_img_sz.height = img_ratio_w! * user_img_sz.width
+                
+                photoImage.image = displayImage()
+            } else {
+                let user_height = 8 * 20
+                // Calculate new aspect ratio
+                
+                
+                user_img_sz.height = CGFloat(user_height)
+                user_img_sz.width = img_ratio_h! * user_img_sz.height
+                
+                photoImage.image = displayImage()
+            }
         }
         
         widthField.text = "\(Int(user_img_sz.width/20))"
@@ -259,6 +242,30 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         return UIGraphicsImageRenderer(size: targetSize).image { _ in
             image.draw(in: CGRect(origin: .zero, size: targetSize))
         }
+    }
+    
+    func displayImage() -> UIImage {
+        let WoverH = user_img_sz.width / user_img_sz.height
+        let min = CGFloat(20)
+        let max = CGFloat(12 * 20)
+        if ((user_img_sz.width < min) || (user_img_sz.height < min)) { // if too small
+            if (WoverH >= 1) {
+                user_img_sz.height = min
+                user_img_sz.width = user_img_sz.height * WoverH
+            } else {
+                user_img_sz.width = min
+                user_img_sz.height = user_img_sz.width / WoverH
+            }
+        } else if ((user_img_sz.width > max) || (user_img_sz.width > max)) { // if too big
+            if (WoverH >= 1) {
+                user_img_sz.width = max
+                user_img_sz.height = user_img_sz.width / WoverH
+            } else {
+                user_img_sz.height = max
+                user_img_sz.width = user_img_sz.height * WoverH
+            }
+        }
+        return resizeImage(image: original_img!, targetSize: user_img_sz)
     }
     
     func combineImages()-> UIImage {  // could be rewritten to add dims directly to fullImg in Selection
