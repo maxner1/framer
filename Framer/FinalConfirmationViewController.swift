@@ -20,6 +20,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
     public var currentIndex: Int?
     public var arView: ARViewController?
     public var finalVC: FinalConfirmationViewController?
+    public var selectedPhoto : UIImage?
     
     
     @IBOutlet weak var photoImage: UIImageView!
@@ -260,6 +261,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         frameViewController.arView = arView
         frameViewController.flow = flow
         frameViewController.finalVC = self
+        frameViewController.selectedPhoto = selectedPhoto
         self.show(frameViewController, sender: nil)
     }
 }
