@@ -153,7 +153,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         
         
-        user_img_sz.width = (masterList[currentIndex!].photo?.size.width)!
+        user_img_sz.width = (tempPhotoImage?.size.height)!
         user_img_sz.height = (tempPhotoImage?.size.height)!
         img_ratio = user_img_sz.width / user_img_sz.height
         tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
