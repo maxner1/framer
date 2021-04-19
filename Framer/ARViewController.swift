@@ -19,12 +19,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //runSesson()
-        // Do any additional setup after loading the view.
         
         // Set the view's delegate
         sceneView.delegate = self
-        
         
         // Create a new scene
         let scene = SCNScene()
@@ -41,7 +38,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addGestureRecognizer(doubleTap)
         
         singleTap.require(toFail: doubleTap)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +46,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.vertical, .horizontal]
-        //configuration.planeDetection = .vertical
 
         // Run the view's session
         sceneView.session.run(configuration)
@@ -67,17 +62,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -120,9 +104,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         for mlEntry in Range(uncheckedBounds: (0, masterList.endIndex)) {
             for snEntry in sceneView.scene.rootNode.childNodes {
                 if snEntry.name == masterList[mlEntry].node?.name {
-                    //let geo = snEntry.geometry
                     var alignment = 1  // vertical
-                    if let geo = snEntry.geometry as? SCNBox {
+                    if (snEntry.geometry as? SCNBox) != nil {
                         alignment = 0  // horizontal
                     }
                     snEntry.removeFromParentNode()
@@ -133,15 +116,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func dblTapped(gesture: UITapGestureRecognizer) {
-        //guard gesture.state == .began else { return }
-        // for deletes
         // Get 2D position of touch event on screen
         let touchPosition = gesture.location(in: sceneView)
         
         // checking if hit existing selection
         let hitTest0 = sceneView.hitTest(touchPosition, options: [SCNHitTestOption.searchMode : 1])
         
-        //guard gesture.state == .began else { return }
         for result in hitTest0.filter( { $0.node.name != nil }) {
             for entry in Range(uncheckedBounds: (0, masterList.endIndex)) {
                 if result.node.name == masterList[entry].node?.name {
@@ -155,7 +135,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func tapped(gesture: UITapGestureRecognizer) {
-        //guard gesture.state == .began else { return }
         // Get 2D position of touch event on screen
         let touchPosition = gesture.location(in: sceneView)
         
@@ -199,34 +178,23 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         if masterList[currentIndex!].node == nil {
             addPainting(hitTest, grids[gridIndex])
         }
-        
-        
-
-        
-        //guard let mlIndex = masterList.firstIndex(where: { $0.node == paintingNode }) else { //already exists
-        //    addPainting(hitTest, grids[gridIndex], paintingNode) //if it needs to be added
-        //    return
-        //}
-        
     }
     
     func addPainting(_ hitResult: ARRaycastResult, _ grid: Grid) {
-        
         let scalar = CGFloat(39.37)
         let width = masterList[currentIndex!].width / scalar
         let height = masterList[currentIndex!].height / scalar
         var node = SCNNode()
         
         if grid.anchor.alignment.rawValue == 1 { // vertical
-            // stuff from above
             let planeGeometry = SCNPlane(width: width, height: height)
             let material = SCNMaterial()
             material.diffuse.contents = masterList[currentIndex!].fullImg
             planeGeometry.materials = [material]
             node = SCNNode(geometry: planeGeometry)
+            node.transform = SCNMatrix4(hitResult.anchor!.transform)
             
         } else {  // horizontal
-            print("horizontal addPainting")
             let boxGeometry = SCNBox(width: width, height: 0.01, length: height, chamferRadius: 0)
             let selectMaterial = SCNMaterial()
             let material = SCNMaterial()
@@ -234,7 +202,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             material.diffuse.contents = UIColor.black
             boxGeometry.materials = [material, material, material, material, material, selectMaterial]
             node = SCNNode(geometry: boxGeometry)
-
         }
         
         node.transform = SCNMatrix4(hitResult.anchor!.transform)
@@ -260,6 +227,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             material.diffuse.contents = masterList[currentIndex!].fullImg
             planeGeometry.materials = [material]
             node = SCNNode(geometry: planeGeometry)
+            
         } else {  // horizontal
             let boxGeometry = SCNBox(width: width, height: 0.01, length: height, chamferRadius: 0)
             let material = SCNMaterial()
@@ -274,16 +242,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         node.name = String(currentIndex!)
         
         sceneView.scene.rootNode.addChildNode(node)
-        //grid.removeFromParentNode()
         masterList[currentIndex!].node = node
-    }
-    
-    func runSesson() {
-        sceneView.delegate = self
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
-        configuration.isLightEstimationEnabled = true
-        sceneView.session.run(configuration)
     }
         
     @IBAction func AddImage(_ sender: Any) {
