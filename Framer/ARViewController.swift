@@ -103,13 +103,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     func update() {
         for mlEntry in Range(uncheckedBounds: (0, masterList.endIndex)) {
             for snEntry in sceneView.scene.rootNode.childNodes {
-                if snEntry.name == masterList[mlEntry].node?.name {
+                if ((snEntry.name == masterList[mlEntry].node?.name) && (masterList[mlEntry].hitTest != nil)) {
                     var alignment = 1  // vertical
                     if (snEntry.geometry as? SCNBox) != nil {
                         alignment = 0  // horizontal
                     }
                     snEntry.removeFromParentNode()
-                    print(mlEntry)
+                    //print(mlEntry)
                     updatePainting(masterList[mlEntry].hitTest!, alignment)
                 }
             }
@@ -257,4 +257,3 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         self.present(photoSelectionVC, animated: true, completion: nil)
     }
 }
-
