@@ -41,22 +41,33 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         // Calculate new aspect ratio
         //print("userWidth: ", user_width)
         masterList[currentIndex!].width = CGFloat(Int(widthField.text!)!)
-        if (user_width <= 12 * 20) {
-            if (user_img_sz.width <= CGFloat(user_width)) {
-                // Save user input for width
-                let nr = CGFloat(user_width) / user_img_sz.width
-                user_img_sz.width = CGFloat(user_width)
-                user_img_sz.height = nr * user_img_sz.height
+        
+        if (user_img_sz.width <= CGFloat(user_width)) {
+            // Save user input for width
+            let nr = CGFloat(user_width) / user_img_sz.width
+            user_img_sz.width = CGFloat(user_width)
+            user_img_sz.height = nr * user_img_sz.height
+        }
+        else {
+            let nr = user_img_sz.width / CGFloat(user_width)
+            user_img_sz.width = CGFloat(user_width)
+            user_img_sz.height = user_img_sz.height / nr
+        }
+        
+        heightField.text = "\(Int(user_img_sz.height)/20)"
+        
+        if (img_ratio_w! <= 1) {
+            if (user_width <= 12 * 20) {
+                
+                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+                photoImage.image = tempPhotoImage
             }
-            else {
-                let nr = user_img_sz.width / CGFloat(user_width)
-                user_img_sz.width = CGFloat(user_width)
-                user_img_sz.height = user_img_sz.height / nr
+        } else {
+            if (img_ratio_w! * CGFloat(user_width) <= 12 * 20) {
+                
+                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+                photoImage.image = tempPhotoImage
             }
-            
-            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-            photoImage.image = tempPhotoImage
-            heightField.text = "\(Int(user_img_sz.height)/20)"
         }
     }
     
@@ -72,23 +83,34 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         let user_ht = (Int(heightField.text!) ?? 1) * 20
         print("Result: ", result)
         // Calculate new aspect ratio
-        if (user_ht <= 12 * 20) {
-            if (user_img_sz.height <= CGFloat(user_ht)) {
-                // Save user input for width
-                let nr = CGFloat(user_ht) / user_img_sz.height
-                user_img_sz.height = CGFloat(user_ht)
-                user_img_sz.width = nr * user_img_sz.width
-            }
-            else {
-                let nr = user_img_sz.height / CGFloat(user_ht)
-                user_img_sz.height = CGFloat(user_ht)
-                user_img_sz.width = user_img_sz.width / nr
-            }
-            
-            tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
-            photoImage.image = tempPhotoImage
-            widthField.text = "\(Int(user_img_sz.width)/20)"
+        
+        if (user_img_sz.height <= CGFloat(user_ht)) {
+            // Save user input for width
+            let nr = CGFloat(user_ht) / user_img_sz.height
+            user_img_sz.height = CGFloat(user_ht)
+            user_img_sz.width = nr * user_img_sz.width
         }
+        else {
+            let nr = user_img_sz.height / CGFloat(user_ht)
+            user_img_sz.height = CGFloat(user_ht)
+            user_img_sz.width = user_img_sz.width / nr
+        }
+        
+        if (img_ratio_h! <= 1) {
+            if (user_ht <= 12 * 20) {
+                
+                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+                photoImage.image = tempPhotoImage
+            }
+        } else {
+            if (img_ratio_h! * CGFloat(user_ht) <= 12 * 20) {
+                
+                tempPhotoImage = resizeImage(image: original_img!, targetSize: user_img_sz)
+                photoImage.image = tempPhotoImage
+            }
+        }
+        
+        widthField.text = "\(Int(user_img_sz.width)/20)"
     }
     
     var saved_height: String!
