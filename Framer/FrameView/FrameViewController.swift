@@ -48,7 +48,7 @@ extension UIImage {
 class FrameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     let frames : [UIImage] = [#imageLiteral(resourceName: "Frame0"), #imageLiteral(resourceName: "Frame1"), #imageLiteral(resourceName: "Frame2"), #imageLiteral(resourceName: "Frame3"), #imageLiteral(resourceName: "Frame4"), #imageLiteral(resourceName: "Frame5"), #imageLiteral(resourceName: "Frame6"), #imageLiteral(resourceName: "Frame7"), #imageLiteral(resourceName: "Frame8"), #imageLiteral(resourceName: "Frame9"), #imageLiteral(resourceName: "Frame10"), #imageLiteral(resourceName: "Frame11"), #imageLiteral(resourceName: "Frame12")]
-    let insets : [CGFloat] = [46, 80, 70, 40, 60, 42, 47, 70, 40, 25, 100, 10, 44]
+    let insets : [CGFloat] = [46, 80, 60, 40, 55, 42, 47, 65, 40, 25, 65, 10, 44]
     //    let insets : [CGFloat] = [46, 80, 70, 40, 60, 42, 47, 70, 40, 25, 70, 10, 44]
 
     private var chosenFrameIndex = 0

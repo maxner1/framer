@@ -42,6 +42,11 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         //print("userWidth: ", user_width)
         masterList[currentIndex!].width = CGFloat(Int(widthField.text!)!)
         
+        let ratio = CGFloat(user_width) / user_img_sz.width // new over old
+        user_img_sz.width = CGFloat(user_width)
+        user_img_sz.height = user_img_sz.height * ratio
+        
+        /*
         if (user_img_sz.width <= CGFloat(user_width)) {
             // Save user input for width
             let nr = CGFloat(user_width) / user_img_sz.width
@@ -52,7 +57,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             let nr = user_img_sz.width / CGFloat(user_width)
             user_img_sz.width = CGFloat(user_width)
             user_img_sz.height = user_img_sz.height / nr
-        }
+        }*/
         
         heightField.text = "\(Int(user_img_sz.height)/20)"
         masterList[currentIndex!].height = CGFloat(Int(user_img_sz.height)/20)
@@ -74,7 +79,11 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         // Calculate new aspect ratio
         masterList[currentIndex!].height = CGFloat(Int(heightField.text!)!)
         
-        if (user_img_sz.height <= CGFloat(user_ht)) {
+        let ratio = CGFloat(user_ht) / user_img_sz.height // new over old
+        user_img_sz.height = CGFloat(user_ht)
+        user_img_sz.width = user_img_sz.width * ratio
+        
+        /*if (user_img_sz.height <= CGFloat(user_ht)) {
             // Save user input for width
             let nr = CGFloat(user_ht) / user_img_sz.height
             user_img_sz.height = CGFloat(user_ht)
@@ -84,7 +93,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             let nr = user_img_sz.height / CGFloat(user_ht)
             user_img_sz.height = CGFloat(user_ht)
             user_img_sz.width = user_img_sz.width / nr
-        }
+        }*/
         
         widthField.text = "\(Int(user_img_sz.width)/20)"
         masterList[currentIndex!].width = CGFloat(Int(user_img_sz.width)/20)
@@ -147,7 +156,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         photoImage.image = masterList[currentIndex!].fullImg
         
-        tempPhotoImage = masterList[currentIndex!].fullImg
+        //tempPhotoImage = masterList[currentIndex!].fullImg
         
         original_img = masterList[currentIndex!].fullImg
         
@@ -156,13 +165,13 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
             user_img_sz.height = masterList[currentIndex!].height * 20
             photoImage.image = displayImage()
         } else {
-            user_img_sz.width = (tempPhotoImage?.size.width)!
-            user_img_sz.height = (tempPhotoImage?.size.height)!
+            user_img_sz.width = (original_img?.size.width)!
+            user_img_sz.height = (original_img?.size.height)!
             img_ratio_w = user_img_sz.height / user_img_sz.width
             img_ratio_h = user_img_sz.width / user_img_sz.height
             //tempPhotoImage = resizeImage(image: tempPhotoImage!, targetSize: user_img_sz)
             
-            if (user_img_sz.width > user_img_sz.height) {
+            if (user_img_sz.width >= user_img_sz.height) {
                 let user_width = 8 * 20
                 // Calculate new aspect ratio
                 
