@@ -159,7 +159,7 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         
         //let H = (masterList[currentIndex!].photo!.size.height) + (2*((masterList[currentIndex!].frame!.capInsets.top)))
         //let W = (masterList[currentIndex!].photo!.size.width) + (2*((masterList[currentIndex!].frame!.capInsets.left)))
-        
+        print(masterList.count)
         frameImage = masterList[currentIndex!].frame
         photoImage.image = masterList[currentIndex!].photo
         photoImage.layer.zPosition = 2

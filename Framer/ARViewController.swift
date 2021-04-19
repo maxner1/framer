@@ -109,6 +109,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                         alignment = 0  // horizontal
                     }
                     snEntry.removeFromParentNode()
+                    print(mlEntry)
                     updatePainting(masterList[mlEntry].hitTest!, alignment)
                 }
             }
@@ -148,10 +149,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     // go to final confirmation to edit
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let finalConfirmationVC = storyBoard.instantiateViewController(withIdentifier: "finalConfirmationVC") as! FinalConfirmationViewController
+                    print(entry)
+                    print(currentIndex!)
                     finalConfirmationVC.masterList = masterList
                     finalConfirmationVC.currentIndex = entry
                     finalConfirmationVC.arView = self
                     finalConfirmationVC.flow = 1
+                    finalConfirmationVC.finalVC = finalConfirmationVC
                     self.present(finalConfirmationVC, animated: true, completion: nil)
                 }
             }

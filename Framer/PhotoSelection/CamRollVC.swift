@@ -68,6 +68,8 @@ class CamRollVC: UIViewController {
         photoSelectionVC.flow = flow
         photoSelectionVC.arView = arView
         photoSelectionVC.finalVC = finalVC
+        photoSelectionVC.currentIndex = currentIndex
+        photoSelectionVC.masterList = masterList   
         self.show(photoSelectionVC, sender: nil)
     }
 }

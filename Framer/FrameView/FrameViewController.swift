@@ -97,9 +97,11 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
                                      bottom: insets[chosenFrameIndex],
                                      right: insets[chosenFrameIndex])
             let finalF = chosenFrame.resizableImage(withCapInsets: inset, resizingMode: UIImage.ResizingMode.tile)
-            let finalImg = selectedPhoto?.scaleI(inset: insets[chosenFrameIndex])
-
-            masterList[currentIndex!].photo = finalImg
+            
+            if (flow != 1) {
+                let finalImg = selectedPhoto?.scaleI(inset: insets[chosenFrameIndex])
+                masterList[currentIndex!].photo = finalImg
+            }
             masterList[currentIndex!].frame = finalF
             //dest.tempFrameImage = finalF
             //dest.tempPhotoImage = finalImg
@@ -121,6 +123,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("FVC: ", masterList.count)
 
         // Do any additional setup after loading the view.
     }

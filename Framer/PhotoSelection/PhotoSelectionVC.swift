@@ -17,6 +17,8 @@ class PhotoSelectionVC: UIViewController {
     public var flow = 0
     public var arView: ARViewController?
     public var finalVC: FinalConfirmationViewController?
+    public var currentIndex: Int?
+    public var masterList = [Selection]()
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -51,6 +53,8 @@ class PhotoSelectionVC: UIViewController {
             }
             defaultLibraryVC.arView = arView
             defaultLibraryVC.finalVC = finalVC
+            defaultLibraryVC.currentIndex = currentIndex
+            defaultLibraryVC.masterList = masterList
         }
         self.present(defaultLibraryVC, animated: true, completion: nil)
     }
@@ -71,6 +75,8 @@ extension PhotoSelectionVC: UIImagePickerControllerDelegate, UINavigationControl
             camRollVC.cameraRollPhoto = img
             camRollVC.flow = flow
             camRollVC.finalVC = finalVC
+            camRollVC.currentIndex = currentIndex
+            camRollVC.masterList = masterList
             if (flow != 0) {
                 camRollVC.arView = arView
             }
