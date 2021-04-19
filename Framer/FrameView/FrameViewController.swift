@@ -109,6 +109,7 @@ class FrameViewController: UIViewController, UICollectionViewDataSource, UIColle
             dest.currentIndex = currentIndex
             dest.flow = flow
             dest.finalVC = finalVC
+            dest.selectedPhoto = selectedPhoto
             if (flow != 0) {
                 dest.arView = arView
             }
