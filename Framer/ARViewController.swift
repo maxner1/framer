@@ -95,6 +95,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor, planeAnchor.alignment == .vertical else { return }
+        // make alignment vertical or horizontal
         let grid = Grid(anchor: planeAnchor)
         self.grids.append(grid)
         node.addChildNode(grid)
@@ -102,6 +103,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor, planeAnchor.alignment == .vertical else { return }
+        // make alignment vertical or horizontal
         let grid = self.grids.filter { grid in
             return grid.anchor.identifier == planeAnchor.identifier
             }.first
@@ -111,6 +113,17 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         
         foundGrid.update(anchor: planeAnchor)
+    }
+    
+    func update() {
+        for mlEntry in Range(uncheckedBounds: (0, masterList.endIndex)) {
+            for snEntry in sceneView.scene.rootNode.childNodes {
+                if snEntry.name == masterList[mlEntry].node?.name {
+                    snEntry.removeFromParentNode()
+                    updatePainting(masterList[mlEntry].hitTest!)
+                }
+            }
+        }
     }
     
     @objc func dblTapped(gesture: UITapGestureRecognizer) {
@@ -192,21 +205,46 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addPainting(_ hitResult: ARRaycastResult, _ grid: Grid) {
+        
         let scalar = CGFloat(39.37)
-        print("extents:")
-        print(grid.anchor.extent.x)
-        print(grid.anchor.extent.z)
-        print("masterList width and height:")
-        print(masterList[currentIndex!].width)
-        print(masterList[currentIndex!].height)
-        //let width = masterList[currentIndex!].width / (scalar * CGFloat(grid.anchor.extent.x))
-        //let height = masterList[currentIndex!].height / (scalar * CGFloat(grid.anchor.extent.z))
         let width = masterList[currentIndex!].width / scalar
         let height = masterList[currentIndex!].height / scalar
-        print("end width and height:")
-        print(width)
-        print(height)
-        let planeGeometry = SCNPlane(width: width, height: height) // change to dims??
+        var node = SCNNode()
+        
+        if grid.anchor.alignment.rawValue == 1 { // vert
+            // stuff from above
+            let planeGeometry = SCNPlane(width: width, height: height)
+            let material = SCNMaterial()
+            material.diffuse.contents = masterList[currentIndex!].fullImg
+            planeGeometry.materials = [material]
+            node = SCNNode(geometry: planeGeometry)
+            
+        } else {
+            let boxGeometry = SCNBox(width: width, height: height, length: 0.1, chamferRadius: 0)
+            let material = SCNMaterial()
+            material.diffuse.contents = masterList[currentIndex!].fullImg
+            boxGeometry.materials = [material]
+            node = SCNNode(geometry: boxGeometry)
+
+        }
+        
+        node.transform = SCNMatrix4(hitResult.anchor!.transform)
+        node.eulerAngles = SCNVector3(node.eulerAngles.x + (-Float.pi / 2), node.eulerAngles.y, node.eulerAngles.z)
+        node.position = SCNVector3(hitResult.worldTransform.columns.3.x, hitResult.worldTransform.columns.3.y, hitResult.worldTransform.columns.3.z)
+        node.name = String(currentIndex!)
+        
+        sceneView.scene.rootNode.addChildNode(node)
+        grid.removeFromParentNode()
+        masterList[currentIndex!].node = node
+        masterList[currentIndex!].hitTest = hitResult
+    }
+    
+    func updatePainting(_ hitResult: ARRaycastResult) {
+        let scalar = CGFloat(39.37)
+        let width = masterList[currentIndex!].width / scalar
+        let height = masterList[currentIndex!].height / scalar
+        
+        let planeGeometry = SCNPlane(width: width, height: height)
         let material = SCNMaterial()
         material.diffuse.contents = masterList[currentIndex!].fullImg
         planeGeometry.materials = [material]
@@ -217,7 +255,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         node.name = String(currentIndex!)
         
         sceneView.scene.rootNode.addChildNode(node)
-        grid.removeFromParentNode()
+        //grid.removeFromParentNode()
         masterList[currentIndex!].node = node
     }
     

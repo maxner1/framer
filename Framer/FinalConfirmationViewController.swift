@@ -97,22 +97,19 @@ class FinalConfirmationViewController: UIViewController, UITextFieldDelegate {
         // Return to running AR Scene
         print("FCVC flow: ", flow)
         if (flow != 0) {
+            arView!.currentIndex = currentIndex
+            arView!.masterList = masterList
+            arView!.update()
             print(masterList.count)
             if (flow == 1) {
-                arView!.currentIndex = currentIndex
-                arView!.masterList = masterList
                 finalVC!.presentingViewController?.dismiss(animated: true, completion: nil)
                 //dismiss(animated: true, completion: nil)
             }
             else if (flow == 2) {
-                arView!.currentIndex = currentIndex
-                arView!.masterList = masterList
                 self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
                 
             }
             else if (flow == 3) {
-                arView!.currentIndex = currentIndex
-                arView!.masterList = masterList
                 self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             }
         }
