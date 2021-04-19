@@ -49,7 +49,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .vertical
+        configuration.planeDetection = [.vertical, .horizontal]
+        //configuration.planeDetection = .vertical
 
         // Run the view's session
         sceneView.session.run(configuration)
@@ -94,15 +95,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor, planeAnchor.alignment == .vertical else { return }
-        // make alignment vertical or horizontal
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        // make alignment vertical or horizontal  planeAnchor.alignment == .vertical
         let grid = Grid(anchor: planeAnchor)
         self.grids.append(grid)
         node.addChildNode(grid)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor, planeAnchor.alignment == .vertical else { return }
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         // make alignment vertical or horizontal
         let grid = self.grids.filter { grid in
             return grid.anchor.identifier == planeAnchor.identifier
@@ -119,8 +120,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         for mlEntry in Range(uncheckedBounds: (0, masterList.endIndex)) {
             for snEntry in sceneView.scene.rootNode.childNodes {
                 if snEntry.name == masterList[mlEntry].node?.name {
+                    //let geo = snEntry.geometry
+                    var alignment = 1  // vertical
+                    if let geo = snEntry.geometry as? SCNBox {
+                        alignment = 0  // horizontal
+                    }
                     snEntry.removeFromParentNode()
-                    updatePainting(masterList[mlEntry].hitTest!)
+                    updatePainting(masterList[mlEntry].hitTest!, alignment)
                 }
             }
         }
@@ -176,7 +182,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         // Translate those 2D points to 3D points using hitTest (existing plane)
         guard let query = sceneView.raycastQuery(from: touchPosition,
                                                    allowing: ARRaycastQuery.Target.existingPlaneGeometry,
-                                                   alignment: ARRaycastQuery.TargetAlignment.vertical) else {
+                                                   alignment: ARRaycastQuery.TargetAlignment.any) else {
             return
         }
         
@@ -211,7 +217,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let height = masterList[currentIndex!].height / scalar
         var node = SCNNode()
         
-        if grid.anchor.alignment.rawValue == 1 { // vert
+        if grid.anchor.alignment.rawValue == 1 { // vertical
             // stuff from above
             let planeGeometry = SCNPlane(width: width, height: height)
             let material = SCNMaterial()
@@ -219,8 +225,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             planeGeometry.materials = [material]
             node = SCNNode(geometry: planeGeometry)
             
-        } else {
-            let boxGeometry = SCNBox(width: width, height: height, length: 0.1, chamferRadius: 0)
+        } else {  // horizontal
+            print("horizontal addPainting")
+            let boxGeometry = SCNBox(width: width, height: 0.01, length: height, chamferRadius: 0)
             let material = SCNMaterial()
             material.diffuse.contents = masterList[currentIndex!].fullImg
             boxGeometry.materials = [material]
@@ -239,16 +246,26 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         masterList[currentIndex!].hitTest = hitResult
     }
     
-    func updatePainting(_ hitResult: ARRaycastResult) {
+    func updatePainting(_ hitResult: ARRaycastResult, _ alignment: Int) {
         let scalar = CGFloat(39.37)
         let width = masterList[currentIndex!].width / scalar
         let height = masterList[currentIndex!].height / scalar
+        var node = SCNNode()
         
-        let planeGeometry = SCNPlane(width: width, height: height)
-        let material = SCNMaterial()
-        material.diffuse.contents = masterList[currentIndex!].fullImg
-        planeGeometry.materials = [material]
-        let node = SCNNode(geometry: planeGeometry)
+        if alignment == 1 { // vertical
+            let planeGeometry = SCNPlane(width: width, height: height)
+            let material = SCNMaterial()
+            material.diffuse.contents = masterList[currentIndex!].fullImg
+            planeGeometry.materials = [material]
+            node = SCNNode(geometry: planeGeometry)
+        } else {  // horizontal
+            let boxGeometry = SCNBox(width: width, height: 0.01, length: height, chamferRadius: 0)
+            let material = SCNMaterial()
+            material.diffuse.contents = masterList[currentIndex!].fullImg
+            boxGeometry.materials = [material]
+            node = SCNNode(geometry: boxGeometry)
+        }
+  
         node.transform = SCNMatrix4(hitResult.anchor!.transform)
         node.eulerAngles = SCNVector3(node.eulerAngles.x + (-Float.pi / 2), node.eulerAngles.y, node.eulerAngles.z)
         node.position = SCNVector3(hitResult.worldTransform.columns.3.x, hitResult.worldTransform.columns.3.y, hitResult.worldTransform.columns.3.z)
