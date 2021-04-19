@@ -228,9 +228,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         } else {  // horizontal
             print("horizontal addPainting")
             let boxGeometry = SCNBox(width: width, height: 0.01, length: height, chamferRadius: 0)
+            let selectMaterial = SCNMaterial()
             let material = SCNMaterial()
-            material.diffuse.contents = masterList[currentIndex!].fullImg
-            boxGeometry.materials = [material]
+            selectMaterial.diffuse.contents = masterList[currentIndex!].fullImg
+            material.diffuse.contents = UIColor.black
+            boxGeometry.materials = [material, material, material, material, material, selectMaterial]
             node = SCNNode(geometry: boxGeometry)
 
         }
