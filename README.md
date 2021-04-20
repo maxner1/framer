@@ -10,6 +10,6 @@
 
 [grade_sheet]: https://docs.google.com/spreadsheets/d/1hM52O72BxeStyjxw1SkHyOWdqW-t1sMPOO8CPqG2osc/edit?usp=sharing
 [team_contract]: /assets/contract.pdf
-[demo_page]: https://youtube.com/
+[demo_page]: https://youtu.be/vtxthPga3EI
 [wiki_page]: https://github.com/maxner1/framer/wiki
 [process_page]: https://trello.com/b/QOtNJuCT/main-board
