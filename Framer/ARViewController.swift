@@ -101,17 +101,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func update() {
-        for mlEntry in Range(uncheckedBounds: (0, masterList.endIndex)) {
-            for snEntry in sceneView.scene.rootNode.childNodes {
-                if ((snEntry.name == masterList[mlEntry].node?.name) && (masterList[mlEntry].hitTest != nil)) {
-                    var alignment = 1  // vertical
-                    if (snEntry.geometry as? SCNBox) != nil {
-                        alignment = 0  // horizontal
-                    }
-                    snEntry.removeFromParentNode()
-                    //print(mlEntry)
-                    updatePainting(masterList[mlEntry].hitTest!, alignment)
+        for snEntry in sceneView.scene.rootNode.childNodes {
+            if ((snEntry.name == masterList[currentIndex!].node?.name) && (masterList[currentIndex!].hitTest != nil)) {
+                var alignment = 1  // vertical
+                if (snEntry.geometry as? SCNBox) != nil {
+                    alignment = 0  // horizontal
                 }
+                snEntry.removeFromParentNode()
+                updatePainting(masterList[currentIndex!].hitTest!, alignment)
             }
         }
     }
@@ -150,8 +147,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     // go to final confirmation to edit
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let finalConfirmationVC = storyBoard.instantiateViewController(withIdentifier: "finalConfirmationVC") as! FinalConfirmationViewController
-                    print(entry)
-                    print(currentIndex!)
                     finalConfirmationVC.masterList = masterList
                     finalConfirmationVC.currentIndex = entry
                     finalConfirmationVC.arView = self

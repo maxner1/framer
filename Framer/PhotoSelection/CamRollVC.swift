@@ -25,12 +25,6 @@ class CamRollVC: UIViewController {
           imageView.image = cameraRollPhoto
         }
         finalPhoto = imageView.image
-        // add/update masterList entry, resizing w/h to be added
-        /*
-        if currentIndex != nil {
-            masterList[currentIndex!].photo = finalPhoto
-        }
-        */
         
         let newSelection = Selection(img: finalPhoto!)
         if (flow != 0) {
